@@ -28,7 +28,7 @@ class MemberRow extends Component {
         }
 
         this.onConfirm = this.onConfirm.bind(this);
-        this.oncancel = this.oncancel.bind(this);
+        this.onCancel = this.onCancel.bind(this);
         this.onDelete = this.onDelete.bind(this);
 
         //console.log('Member Row...');
@@ -39,7 +39,7 @@ class MemberRow extends Component {
         this.setState({confirmDelete: true});
     }
 
-    oncancel(){
+    onCancel(){
         //console.log('cancel delete...');
         this.setState({confirmDelete: false});
     }
@@ -63,8 +63,8 @@ class MemberRow extends Component {
                 this.state.confirmDelete ?
                 <span>
                     <a href="javascript: void(0);" value="" onClick={this.onDelete}
-                        className='btn btn-sm btn-danger m-r-1em'>Confirm</a>
-                    <a href="javascript: void(0);" onClick={this.oncancel}
+                        className='btn btn-sm btn-danger mr-3'>Confirm</a>
+                    <a href="javascript: void(0);" onClick={this.onCancel}
                         className='btn btn-sm btn-primary'>Cancel</a>
                 </span>
                 :
@@ -79,19 +79,20 @@ class MemberRow extends Component {
                     */}
                     <Link to={'/members/id/'+ this.props.member.id}
                         onClick={() => this.props.changeAppMode('readOne', this.props.member.id)}
-                        className='btn btn-info btn-sm m-r-1em'>Info
+                        className='btn btn-info btn-sm mr-3'>Info
                     </Link>
                     <Link to={'/members/id/'+this.props.member.id + '/password'}
                         onClick={() => this.props.changeAppMode('changePwd', this.props.member.id, this.props.member.username)}
-                        className='btn btn-warning btn-sm m-r-1em'>PWD
+                        className='btn btn-warning btn-sm mr-3'>PWD
                     </Link>
                     <Link to={'/members/id/' + this.props.member.id + '/edit'}
                         onClick={() => this.props.changeAppMode('update', this.props.member.id)}
-                        className='btn btn-primary btn-sm m-r-1em'> Edit
+                        className='btn btn-primary btn-sm mr-3'>Edit
                     </Link>
-                    <a onClick={this.onConfirm}
-                        className='btn btn-danger btn-sm'> Del
+                    <a href="javascript: void(0);" onClick={this.onConfirm}
+                        className='btn btn-danger btn-sm'>Del
                     </a>
+                    
                 </span>
             }
             </td>

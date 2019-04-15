@@ -161,7 +161,7 @@ class MembersTable extends Component {
                                 {rows}
                             </tbody>
                         </table>
-                        <div className="d-flex justify-content-between">
+                        <div className="pagination pagination-member d-flex justify-content-between mb-2 mt-0">
                             <div><Link style={{display: this.props.memberCurrentPage <= 1?'none':'block'}} className="prev" to={this.props.memberPrevPage} onClick={() => this.props.prevPage()}>‹ <span className="visually-hidden">Prev</span></Link></div>
                             <div><span className="hiddenx info">- {this.props.memberResults} -</span></div>
                             <div><Link style={{display: this.props.showNextpage !== true?'none':'block'}} className="next" to={this.props.memberNextPage} onClick={() => this.props.nextPage()}><span className="visually-hidden">Next</span> ›</Link></div>

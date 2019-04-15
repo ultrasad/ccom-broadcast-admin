@@ -98,11 +98,15 @@ body {
    }
    .wrapper .btn {
        border: none;
+       color:#fff;
+   }
+   .wrapper .btn:hover {
+      cursor: pointer;
    }
    .wrapper .btn-info, .wrapper .btn-info:hover {
        background-color: #37abc5;
    }
-   .wrapper .btn-warning, .wrapper .btn-warning:hover {
+   .wrapper .btn-warning,.btn-warning, .wrapper .btn-warning:hover {
       background-color: #c5d647cc;
    }
    .wrapper .btn-primary, .wrapper .btn-primary:hover {
@@ -113,6 +117,10 @@ body {
    }
    .wrapper .btn-info:hover, .wrapper .btn-warning:hover, .wrapper .btn-primary:hover, .wrapper .btn-danger:hover {
       opacity:.8;
+   }
+
+   .wrapper .btn.focus, .wrapper .btn:focus {
+      box-shadow: none;
    }
   
    .clearfix:after {
