@@ -11,6 +11,10 @@ import {createStore, combineReducers, applyMiddleware} from 'redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
+// This must be the first line in src/index.js
+import 'react-app-polyfill/ie11';
+import 'url-search-params-polyfill';
+
 import * as serviceWorker from './serviceWorker';
 
 const authenticated = {
@@ -19,18 +23,12 @@ const authenticated = {
     token: ''
 }
 
-const userReducer = (state={name:'Hanajung',age:20}, action) => {
+const userReducer = (state={name:'Super99'}, action) => {
     switch(action.type){
         case 'setName':
             state = {
                 ...state,
                 name: action.value
-            }
-        break;
-        case 'setAge':
-            state = {
-                ...state,
-                age: action.value
             }
         break;
         default:

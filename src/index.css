@@ -61,6 +61,8 @@ body {
       letter-spacing:.025em;
       background:#3691b2;
       background:linear-gradient(to left,#3691b2 ,#b8ecee);
+      /*background:#9b9898;
+      background:linear-gradient(to left,#9b9898,#b8ecee);*/
       color:#777;
       margin:0;
       display:flex;
@@ -68,7 +70,7 @@ body {
       flex-direction:column;
    }
    .wrapper a.title {
-      color:#f15f79;
+      color:#868f9b;
       text-decoration:none;
       transition:color .2s ease;
    }
@@ -76,7 +78,7 @@ body {
       color:#b24592;
    }
    .wrapper a.title {
-       color: #78bfd1;
+       color: #868f9b;
        text-decoration: none;
    }
    .wrapper a.title:hover {
@@ -99,6 +101,7 @@ body {
    .wrapper .btn {
        border: none;
        color:#fff;
+       opacity:.8;
    }
    .wrapper .btn:hover {
       cursor: pointer;
@@ -116,7 +119,7 @@ body {
       background-color: #f87c72e6;
    }
    .wrapper .btn-info:hover, .wrapper .btn-warning:hover, .wrapper .btn-primary:hover, .wrapper .btn-danger:hover {
-      opacity:.8;
+      opacity:.6;
    }
 
    .wrapper .btn.focus, .wrapper .btn:focus {
@@ -157,8 +160,9 @@ body {
    header .title .icon-tor {
       color:#b24592;
    }
-   header h1 {
-       margin: 0.2em 0;
+   header .title h1 {
+       /*margin: 0.2em 0;*/
+       margin: 0;
        font-size: 26px;
        font-weight: bold;
    }
@@ -210,11 +214,12 @@ body {
       cursor:pointer;
    }
    .menu-button .heart {
-      fill:#3691B2;
+      fill:#9C9B9B;
       transition:fill .2s ease;
    }
    .menu-button:hover .heart {
       fill:#85C8D6;
+      fill:#f15f79;
    }
    .margin-bottom-1em {
        margin-top: 1em;
@@ -238,10 +243,16 @@ body {
        background: rgba(255,255,255,.3);
        padding: 10px;
    }
+
+   /*
+   .alert.alert-danger {
+      padding: .45rem 0.75rem;
+   }
+   */
   
    .header-account {
       position:relative;
-      padding-top: 2px;
+      margin-top: -4px;
       margin-right: 1rem;
       font-size:1.4em;
       text-align:center;
@@ -252,7 +263,8 @@ body {
    }
   
    .header-account .account-circle {
-      fill:#5FAEC5;
+      fill:#777D86;
+      fill:#5faec5;
       transition:fill .2s ease;
    }
   
@@ -279,25 +291,28 @@ body {
       border-collapse: separate !important;
       border-spacing: 2px !important;
       margin-bottom: 0px;
+
+      font-size: 14px;
+      color: #504e4e;
    }
    .table.table-member > tbody > tr > td, .table.table-member > tbody > tr > th, .table.table-member > tfoot > tr > td, .table.table-member > tfoot > tr > th, .table.table-member > thead > tr > td, .table.table-member > thead > tr > th {
        border-top: 0px;
    }
+   .table.table-member td, .table.table-member th {
+      padding:.4rem;
+      background: rgba(255,255,255,.1);
+   }
    .table.table-member  > thead > tr > th {
       border-bottom: 0px;
    }
-   td,th {
-      padding:.4em;
-      background:rgba(255,255,255,.1);
-   }
-   th {
+   .table.table-member th {
       font-weight:400;
       background:rgba(255,255,255,.3);
    }
-   tr:nth-of-type(even) td {
+   .table.table-member tr:nth-of-type(even) td {
       background:rgba(255,255,255,.2);
    }
-   td:first-child {
+   .table.table-member td:first-child {
       text-align:center;
    }
    .pagination.pagination-member {

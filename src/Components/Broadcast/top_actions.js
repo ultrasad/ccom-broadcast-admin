@@ -34,17 +34,20 @@ class TopActionsComponent extends Component {
                                         "Top Broadcast by Date"
                                 }</h2>
                             </div>
+                            
                             <div className="float-right">
-                                <p>
+                                <p>&nbsp;
+                                    {/*
                                     <Link to={'/members/create'} onClick={() => this.props.changeAppMode('create')} className='btn btn-primary btn-sm'>
                                         Create Member
                                     </Link>&nbsp;&nbsp;
                                     <Link to={'/members/import'} onClick={() => this.props.changeAppMode('import')} className="btn btn-sm btn-success">
                                         Import member
                                     </Link>
-                                    
+                                    */}
                                 </p>
                             </div>
+                            
                             {/*
                             <div className="pull-right col-md-4">
                                 <div className="input-group">

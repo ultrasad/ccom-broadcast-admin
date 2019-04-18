@@ -41,18 +41,17 @@ class Login extends Component {
             // submit form data to api
             $.ajax({
                 //url: this.props.url_login_member,
-                //url: 'http://172.22.228.225/membermanager/login_member',
-                url: this.props.base_url + '/membermanagement/login_member',
+                url: this.props.base_url + '/membermanagement/login_member_ccom',
                 type : "POST",
                 dataType: 'json',
-                //contentType : 'application/json',
+                contentType : 'application/json',
                 //crossDomain:true,
                 //crossOrigin: false,
                 //headers : {
                     //'Content-Type' : 'multipart/form-data; charset=UTF-8'
                // },
-                //data : JSON.stringify(form_data),
-                data: form_data,
+                data : JSON.stringify(form_data),
+                //data: form_data,
                 success : function(response){
 
                     //console.log('response => ' + response);
@@ -117,7 +116,7 @@ class Login extends Component {
     render() {
         if (this.state.redirectToReferrer || localStorage.getItem('userData')){
             console.log('login session and redirect to members....');
-            return (<Redirect to={'/members'} />);
+            return (<Redirect to={'/broadcast'} />);
         }
         
         $('.page-header h1').text('Login');
@@ -128,7 +127,7 @@ class Login extends Component {
             <Header searchBox={false} />
             <div className="container wrapper main header">
                 {/*<span>Username: {this.props.auth.userName}</span>*/}
-                <div className="col-sm-6 col-xs-12 form-login">
+                <div className="col-sm-5 col-xs-12 form-login">
                     {
                     
                         this.state.loginStatus === "Unable to login." ?
@@ -146,7 +145,7 @@ class Login extends Component {
                                         <input
                                         type='text'
                                         name="username"
-                                        className='form-control input-sm'
+                                        className='form-control form-control-sm'
                                         required
                                         onChange={this.onChange} />
                                     </td>
@@ -158,7 +157,7 @@ class Login extends Component {
                                         <input
                                         type='password'
                                         name="password"
-                                        className='form-control input-sm'
+                                        className='form-control form-control-sm'
                                         required
                                         onChange={this.onChange} />
                                     </td>

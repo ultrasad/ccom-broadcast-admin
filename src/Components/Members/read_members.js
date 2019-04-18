@@ -611,7 +611,7 @@ class ReadMembersComponent extends Component {
         //console.log('filteredMembers ==> ' + filteredMembers);
 
         return (
-            <main role="main" className="wrapper">
+            <div role="main" className="main wrapper">
                 <div className='overflow-hidden'>
                     <Header searchInput={searchInput} clearState={this.clearState} searchBox={true} onSearchMember={this.onSearchMember} requestMember={this.state.requestMember} />
                     <TopActionsComponent searchInput={searchInput} changeName={this.props.changeName} changeAppMode={this.props.changeAppMode} />
@@ -630,7 +630,7 @@ class ReadMembersComponent extends Component {
                         memberCurrentPage={memberCurrentPage} />
                     </div>
                 </div>
-            </main>
+            </div>
         );
     }
 }

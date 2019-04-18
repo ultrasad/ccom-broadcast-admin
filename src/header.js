@@ -61,7 +61,7 @@ class Header extends Component {
                                 <path d="M0 0h24v24H0z" fill="none"/>
                             </svg>
                         </div>
-                        <h1><i className="icon-member"></i>Members Management</h1>
+                        <h1><i className="icon-member"></i>Broadcast Management</h1>
                     </Link>
                         <div className="search" id="search">
                         {

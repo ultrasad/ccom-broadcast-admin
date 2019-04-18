@@ -52,6 +52,7 @@ export default function (ComposedComponent) {
 
   const mapStateToProps = (state) => ({
     token: state.auth.token,
+    //testValue: 'Hanajung',
     userName: state.auth.userName,
     isAuthenticated: state.auth.isAuthenticated
   });

@@ -3,15 +3,17 @@ import {connect} from 'react-redux';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import ReadMembersComponent from './Components/Members/read_members';
-import ReadOneMemberComponent from './Components/Members/read_one_member';
-import CreateMemberComponent from './Components/Members/create_member';
-import ImportMemberComponent from './Components/Members/import_member'
-import UpdateMemberComponent from './Components/Members/update_member';
-import DeleteMemberComponent from './Components/Members/delete_member';
-import ChangePasswordComponent from './Components/Members/change_password';
+import ReadBroadcastComponent from './Components/Broadcast/read_broadcasts';
+/*
+import ReadOneMemberComponent from './Components/Broadcast/read_one_member';
+import CreateMemberComponent from './Components/Broadcast/create_member';
+import ImportMemberComponent from './Components/Broadcast/import_member'
+import UpdateMemberComponent from './Components/Broadcast/update_member';
+import DeleteMemberComponent from './Components/Broadcast/delete_member';
+import ChangePasswordComponent from './Components/Broadcast/change_password';
+*/
 
-class Members extends Component {
+class Broadcast extends Component {
   
       // initial mode is 'read' mode
       constructor(props){
@@ -22,6 +24,8 @@ class Members extends Component {
               currentMode: 'read',
               memberId: null,
               memberName: null,
+              url_broadcast: this.props.broadcast_url,
+              /*
               url_all_member: this.props.base_url + '/membermanagement/all_member/true',
               url_member_group: this.props.base_url + '/membermanagement/member_group',
               url_create_member: this.props.base_url + '/membermanagement/create_member',
@@ -32,12 +36,13 @@ class Members extends Component {
               url_change_password: this.props.base_url + '/membermanagement/change_password',
               url_search_member: this.props.base_url + '/membermanagement/search_member',
               url_login_member: this.props.base_url + '/membermanagement/login_member'
+              */
           }
 
           this.changeAppMode = this.changeAppMode.bind(this);
           this.onRender = this.onRender.bind(this);
 
-          console.log('member base_url => ' + this.props.base_url);
+          console.log('member base_url => ' + this.props.base_url + ', boardcast url => ' + this.props.broadcast_url);
       }
 
       componentWillMount() {
@@ -69,10 +74,12 @@ class Members extends Component {
       }
 
       onRender(){
-        var modeComponent = <ReadMembersComponent params={this.state.params} usrMember={this.props.usr.name} changeName={this.props.changeName} url_all_member={this.state.url_all_member} url_delete_member={this.state.url_delete_member} url_search_member={this.state.url_search_member} changeAppMode={this.changeAppMode} />;
+        //var modeComponent = <ReadBroadcastComponent params={this.state.params} usrMember={this.props.usr.name} changeName={this.props.changeName} url_all_member={this.state.url_all_member} url_delete_member={this.state.url_delete_member} url_search_member={this.state.url_search_member} changeAppMode={this.changeAppMode} />;
+        var modeComponent = <ReadBroadcastComponent params={this.state.params} usrMember={this.props.usr.name} changeName={this.props.changeName} url_all_member={this.state.url_all_member} url_broadcast={this.state.url_broadcast} url_delete_member={this.state.url_delete_member} url_search_member={this.state.url_search_member} changeAppMode={this.changeAppMode} />;
         switch(this.state.currentMode){
             case 'read':
                 break;
+            /*
             case 'readOne':
                 modeComponent = <ReadOneMemberComponent url_one_member={this.state.url_read_one_member} memberId={this.state.memberId} changeAppMode={this.changeAppMode}/>;
                 break;
@@ -94,6 +101,7 @@ class Members extends Component {
             case 'delete':
                 modeComponent = <DeleteMemberComponent url_delete_member={this.state.url_delete_member} memberId={this.state.memberId} changeAppMode={this.changeAppMode}/>;
                 break;
+            */
             default:
                 break;
         }
@@ -109,27 +117,32 @@ class Members extends Component {
         return (
                 <div>
                     <Switch>
-                        <Route exact path="/members/id/:memberId/password" render={({ match }) => (
+                        {/*
+                        <Route exact path="/broadcast/id/:memberId/password" render={({ match }) => (
                             <ChangePasswordComponent url_one_member={this.state.url_read_one_member} url_change_password={this.state.url_change_password} memberName={this.state.memberName} memberId={match.params.memberId} changeAppMode={this.changeAppMode}/>
                         )}/>
-                        <Route exact path="/members/id/:memberId/edit" render={({ match }) => (
+                        <Route exact path="/broadcast/id/:memberId/edit" render={({ match }) => (
                             <UpdateMemberComponent url_one_member={this.state.url_read_one_member} url_member_group={this.state.url_member_group} url_update_member={this.state.url_update_member} memberId={match.params.memberId} changeAppMode={this.changeAppMode}/>
                         )}/>
-                        <Route path="/members/id/:memberId" render={({ match }) => (
+                        <Route path="/broadcast/id/:memberId" render={({ match }) => (
                             <ReadOneMemberComponent url_one_member={this.state.url_read_one_member} memberId={match.params.memberId} changeAppMode={this.changeAppMode}/>
                         )}/>
-                        <Route path="/members/create" render={({ match }) => (
+                        <Route path="/broadcast/create" render={({ match }) => (
                             <CreateMemberComponent url_create_member={this.state.url_create_member} url_member_group={this.state.url_member_group} changeAppMode={this.changeAppMode}/>
                         )}/>
-                        <Route path="/members/import" render={({ match }) => (
+                        <Route path="/broadcast/import" render={({ match }) => (
                             <ImportMemberComponent url_import_member={this.state.url_import_member} changeAppMode={this.changeAppMode}/>
                         )}/>
+                        */}
                         <Route exact path={this.props.match.url} render={({ match }) => (
-                            <ReadMembersComponent params={this.state.params} usrMember={this.props.usr.name} changeName={this.props.changeName} url_all_member={this.state.url_all_member} url_delete_member={this.state.url_delete_member} url_search_member={this.state.url_search_member} changeAppMode={this.changeAppMode} />
+                            <ReadBroadcastComponent params={this.state.params} usrMember={this.props.usr.name} changeName={this.props.changeName} url_all_member={this.state.url_all_member} url_broadcast={this.state.url_broadcast} url_delete_member={this.state.url_delete_member} url_search_member={this.state.url_search_member} changeAppMode={this.changeAppMode} />
                         )}/>
                         
-                        <Route path="/members/id/:memberId/password" component={ChangePasswordComponent}/>
-                        <Route path="/members/id/:memberId/edit" component={UpdateMemberComponent}/>
+                        {/*
+                            <Route path="/broadcast/id/:memberId/password" component={ChangePasswordComponent}/>
+                            <Route path="/broadcast/id/:memberId/edit" component={UpdateMemberComponent}/>
+                        */}
+                        
                         <Redirect to={'/notfound'} />
                     </Switch>
                 </div>
@@ -156,5 +169,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-//export default Members;
-export default connect(mapStateToProps, mapDispatchToProps)(Members);
+//export default Broadcast;
+export default connect(mapStateToProps, mapDispatchToProps)(Broadcast);
