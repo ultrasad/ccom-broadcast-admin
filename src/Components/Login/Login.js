@@ -167,7 +167,7 @@ class Login extends Component {
                                     <td></td>
                                     <td>
                                         <button
-                                        className='btn btn-info btn-sm'
+                                        className='btn btn-login btn-sm'
                                         type='Submit'
                                         onClick={() => this.onLogin}>Login</button>
                                     </td>

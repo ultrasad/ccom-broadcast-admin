@@ -31,7 +31,7 @@ class TopActionsComponent extends Component {
                                     searchInput !== '' ?
                                         'Search results for "'  + searchInput + '":'
                                     :
-                                        "Top Broadcast by Date"
+                                        "Broadcast by User Groups"
                                 }</h2>
                             </div>
                             

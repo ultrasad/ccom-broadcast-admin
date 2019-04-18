@@ -53,7 +53,7 @@ class Header extends Component {
         return (
             <header role="banner">
                 <div className="container wrapper clearfix">
-                    <Link to="/members" onClick={this.props.clearState} className="title" title="CCOM Member manager">
+                    <Link to="/broadcast" onClick={this.props.clearState} className="title" title="CCOM Broadcast Admin">
                         {/*<div className="header-account" style={{ height: '32px', width:'32px', float: 'left', 'font-size':'2rem'}}>*/}
                         <div className="header-account" style={{}}>
                             <svg className="account-circle" height="32" viewBox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">

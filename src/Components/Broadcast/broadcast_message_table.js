@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import BroadcastRow from './broadcast_row';
-import {Link} from 'react-router-dom';
+import BroadcastMessageRow from './broadcast_message_row';
+//import {Link} from 'react-router-dom';
 //import $ from 'jquery';
 
 // component for the whole members table
-class BroadcastTable extends Component {
+class BroadcastMessageTable extends Component {
     render() {
         if(this.props.broadcasts){
             var rows = this.props.broadcasts
             .map(function(broadcast, i) {
                 return (
-                    <BroadcastRow
+                    <BroadcastMessageRow
                         url_delete_member={this.props.url_delete_member}
                         key={i}
-                        broadcast={broadcast}
+                        broadcast_msg={broadcast}
                         changeAppMode={this.props.changeAppMode}
                         onDeleteMember={this.props.onDeleteMember} />
                 );
@@ -27,9 +27,9 @@ class BroadcastTable extends Component {
                         <table className='table table-member'>
                             <thead>
                                 <tr>
-                                    <th width="30%">Group Name</th>
-                                    <th>UserName</th>
-                                    <th>Created</th>
+                                    <th width="40%">Message</th>
+                                    <th>Priority</th>
+                                    <th>Created By</th>
                                     <th width="15%">Actions</th>
                                 </tr>
                             </thead>
@@ -38,9 +38,11 @@ class BroadcastTable extends Component {
                             </tbody>
                         </table>
                         <div className="pagination pagination-member d-flex justify-content-between mb-2 mt-0">
+                            {/*
                             <div><Link style={{display: this.props.memberCurrentPage <= 1?'none':'block'}} className="prev" to={this.props.memberPrevPage} onClick={() => this.props.prevPage()}>‹ <span className="visually-hidden">Prev</span></Link></div>
                             <div><span className="hiddenx info">- {this.props.memberResults} -</span></div>
                             <div><Link style={{display: this.props.showNextpage !== true?'none':'block'}} className="next" to={this.props.memberNextPage} onClick={() => this.props.nextPage()}><span className="visually-hidden">Next</span> ›</Link></div>
+                            */}
                         </div>
                     </div>
         
@@ -51,4 +53,4 @@ class BroadcastTable extends Component {
     }
 }
 
-export default BroadcastTable;
+export default BroadcastMessageTable;

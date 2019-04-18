@@ -40,7 +40,7 @@ class ReadBroadcastComponent extends Component {
         this.getAuthenticationToken = this.getAuthenticationToken.bind(this);
         this.getAuthenticationUser = this.getAuthenticationUser.bind(this);
 
-        console.log('broadcast url ==> ' + this.props.url_broadcast);
+        console.log('broadcast url ==> ' + this.props.broadcast_url);
     }
 
     _onSearchMember(e){
@@ -203,7 +203,7 @@ class ReadBroadcastComponent extends Component {
         
         this.serverRequestMember = $.ajax({
             data: {page_length:this.state.memberPerPage, page_start:this.state.memberCurrentPage, username: this.state.searchInput, token: token},
-            url: this.props.url_broadcast + '/user/' + userLogin,
+            url: this.props.broadcast_url + '/user/' + userLogin,
             dataType: 'json',
             //crossDomain:true,
             success: function(response) {
@@ -226,14 +226,14 @@ class ReadBroadcastComponent extends Component {
 
                 this.setState({
                     //members: response.members,
-                    members: response, //lists broadcast user
-                    memberResults: response.results
+                    broadcast: response, //lists broadcast user
+                    broadcastResults: response.results
                 });
 
                 //console.log('memberResults => ', response.results);
             }.bind(this),
             error: function(xhr, status, err) {
-                console.error(this.props.url_broadcast, status, err.toString());
+                console.error(this.props.broadcast_url, status, err.toString());
             }.bind(this)
         });
     }
@@ -311,7 +311,7 @@ class ReadBroadcastComponent extends Component {
         }
 
         // list of members
-        var filteredMembers = this.state.members;
+        var filteredBroadcast = this.state.broadcast;
         var searchInput = this.state.searchInput;
         var memberResults = this.state.memberResults;
         var showNextpage = this.state.showNextpage;
@@ -341,7 +341,7 @@ class ReadBroadcastComponent extends Component {
                     <div className="container wrapper main">
                     <BroadcastTable
                         url_delete_member={this.props.url_delete_member}
-                        members={filteredMembers}
+                        broadcasts={filteredBroadcast}
                         memberResults={memberResults}
                         showNextpage={showNextpage}
                         changeAppMode={this.props.changeAppMode}
