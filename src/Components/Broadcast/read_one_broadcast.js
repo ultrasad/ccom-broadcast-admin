@@ -102,7 +102,7 @@ class ReadOneBroadcastComponent extends Component {
        const broadcastGroupname = this.state.broadcastGroupname;
        console.log('render broadcastGroupname => ' + broadcastGroupname);
        
-       const greeting = 'Welcome to React';
+       const greeting = 'Welcome to React, Edit on Github';
        
        return (
 
