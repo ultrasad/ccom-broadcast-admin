@@ -31,9 +31,9 @@ class ReadBroadcastComponent extends Component {
 
         this.state = this.initialState;
         
-        this.onDeleteMember = this.onDeleteMember.bind(this);
-        this.onSearchMember = this.onSearchMember.bind(this);
-        this.requestMember = this.requestMember.bind(this);
+        //this.onDeleteMember = this.onDeleteMember.bind(this);
+        //this.onSearchMember = this.onSearchMember.bind(this);
+        this.requestBroadcast = this.requestBroadcast.bind(this);
         this.nextPage = this.nextPage.bind(this);
         this.prevPage = this.prevPage.bind(this);
         this.clearState = this.clearState.bind(this);
@@ -41,53 +41,6 @@ class ReadBroadcastComponent extends Component {
         this.getAuthenticationUser = this.getAuthenticationUser.bind(this);
 
         console.log('broadcast url ==> ' + this.props.broadcast_url);
-    }
-
-    _onSearchMember(e){
-        let  memberSearch = e.target.value;
-        if(memberSearch !== undefined && (e.key === 'Enter')){
-            
-            this.setState({
-                searchInput: memberSearch
-            }, function onStateChange(){
-                console.log('member search => ', this.state.searchInput);
-            });
-
-            this.props.history.push("/broadcast/?s=" + memberSearch);
-
-            $.ajax({
-                url: this.props.url_search_member,
-                type : "POST",
-                dataType: 'json',
-                data: {'username': memberSearch},
-                success : function(response) {
-                    //console.log('response => ' + response);
-
-                    console.log('showNextpage => ', this.state.showNextpage);
-                    if(response.results > this.state.memberPerPage){
-                        this.setState({
-                            showNextpage: true
-                        });
-                    } else {
-                        this.setState({
-                            showNextpage: false
-                        });
-                    }
-                    
-                    this.setState({
-                        members: response.members,
-                        memberResults: response.results
-                    });
-
-                    console.log('memberResults => '  + response.results);
-                    
-                }.bind(this), //use for bind props changeAppMode
-                error: function(xhr, resp, text){
-                    // show error in console
-                    console.log(xhr, resp, text);
-                }
-            });
-        }
     }
 
     onDeleteMember(memberId){
@@ -130,7 +83,7 @@ class ReadBroadcastComponent extends Component {
             memberNextPage: newNextPage,
             memberPrevPage: prevPage
         },function afterStateChange () {
-            this.requestMember();
+            this.requestBroadcast();
         });
     }
 
@@ -153,7 +106,7 @@ class ReadBroadcastComponent extends Component {
                 });
             }
 
-            this.requestMember();
+            this.requestBroadcast();
         });
     }
 
@@ -166,7 +119,7 @@ class ReadBroadcastComponent extends Component {
                 memberNextPage: 2,
                 memberPrevPage: 0
             }, function onStateChange(){
-                this.requestMember();
+                this.requestBroadcast();
             });
 
             this.props.history.push("/members/?s=" + memberSearch);
@@ -182,6 +135,7 @@ class ReadBroadcastComponent extends Component {
     }
 
     getAuthenticationUser(){
+        //console.log('localStorage userData => ' + localStorage.getItem('userData'));
         if(localStorage.getItem('userData') === null){
             return false;
         } else {
@@ -189,19 +143,29 @@ class ReadBroadcastComponent extends Component {
         }
     }
 
-    requestMember(e){
+    requestBroadcast(e){
         //this.props.auth
         let token = '';
         let userLogin = '';
         if(this.state.checkAuth === true){
+            
             token = this.getAuthenticationToken();
             userLogin = this.getAuthenticationUser();
-            this.setState({checkAuth: false});
+            if(userLogin){
+                this.setState({checkAuth: false});
+            }
+            
+        } else {
+            userLogin = this.getAuthenticationUser();
+            console.log('userLogin get auth => ' + userLogin);
+            if(userLogin){
+                this.setState({checkAuth: false});
+            }
         }
 
         console.log('user login >>> ' + userLogin);
         
-        this.serverRequestMember = $.ajax({
+        this.serverRequestBroadcast = $.ajax({
             data: {page_length:this.state.memberPerPage, page_start:this.state.memberCurrentPage, username: this.state.searchInput, token: token},
             url: this.props.broadcast_url + '/user/' + userLogin,
             dataType: 'json',
@@ -272,14 +236,14 @@ class ReadBroadcastComponent extends Component {
             checkAuth: true
         }, function onStateChange(){
             console.log('request member start here >>>');
-            this.requestMember();
+            this.requestBroadcast();
         });
     }
     
     // on unmount, kill member fetching in case the request is still pending
     componentWillUnmount() {
         //console.log('kill process request member >>>');
-        this.serverRequestMember.abort();
+        this.serverRequestBroadcast.abort();
     }
 
     componentDidUpdate(){
@@ -291,7 +255,7 @@ class ReadBroadcastComponent extends Component {
         console.log('defaultState => ' + this.initialState.toSource());
 
         this.setState(this.initialState, function afterStateChange(){
-            this.requestMember();
+            this.requestBroadcast();
         });
         console.log('clear state...');
     }
@@ -336,7 +300,7 @@ class ReadBroadcastComponent extends Component {
         return (
             <div role="main" className="main wrapper">
                 <div className='overflow-hidden'>
-                    <Header searchInput={searchInput} clearState={this.clearState} searchBox={false} onSearchMember={this.onSearchMember} requestMember={this.state.requestMember} />
+                    <Header searchInput={searchInput} clearState={this.clearState} searchBox={false} onSearchMember={this.onSearchMember} />
                     <TopActionsComponent searchInput={searchInput} changeName={this.props.changeName} changeAppMode={this.props.changeAppMode} />
                     <div className="container wrapper main">
                     <BroadcastTable

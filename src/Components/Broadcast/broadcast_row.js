@@ -35,7 +35,14 @@ class BroadcastRow extends Component {
     render() {
     return (
         <tr>
-             <td><span className="bullet"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" role="presentation"><g fill="currentColor" fillRule="evenodd"><path d="M5 5v14h14V5H5zm0-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" fillRule="nonzero"></path><path d="M9.232 8.306l-2.93 2.954a1.056 1.056 0 0 0 0 1.478l2.93 2.956a1.034 1.034 0 0 0 1.465 0 1.05 1.05 0 0 0 0-1.478L8.5 11.999l2.197-2.217a1.048 1.048 0 0 0 0-1.476A1.024 1.024 0 0 0 9.965 8c-.267 0-.53.101-.733.306zm4.072-.001a1.05 1.05 0 0 0 0 1.478L15.5 12l-2.196 2.217a1.05 1.05 0 0 0 0 1.477c.404.408 1.06.408 1.464 0l2.93-2.955a1.054 1.054 0 0 0 0-1.478l-2.93-2.956a1.031 1.031 0 0 0-1.464 0z"></path></g></svg></span>
+             <td><span className="bullet">
+            <svg className="hangouts" version="1.1" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+            <title></title>
+            <g id="icomoon-ignore">
+            </g>
+            <path d="M255.9 0c-122.1 0-221.1 99-221.1 221.1 0 115.7 105.4 209.5 221.1 209.5v81.4c134.3-68.1 221.3-177.8 221.3-290.9 0-122.1-99.2-221.1-221.3-221.1zM224 256c0 26.5-14.3 48-32 48v-48h-64v-96h96v96zM384 256c0 26.5-14.3 48-32 48v-48h-64v-96h96v96z"></path>
+            </svg>
+            </span>
             {this.props.broadcast.groups.group_name}
             </td>
             <td>{this.props.broadcast.username}</td>
@@ -44,9 +51,9 @@ class BroadcastRow extends Component {
             {
                 this.state.confirmDelete ?
                 <span>
-                    <a href="javascript: void(0);" value="" onClick={this.onDelete}
+                    <a href="#confirm" value="" onClick={this.onDelete}
                         className='btn btn-sm btn-danger mr-3'>Confirm</a>
-                    <a href="javascript: void(0);" onClick={this.onCancel}
+                    <a href="#cancel" onClick={this.onCancel}
                         className='btn btn-sm btn-primary'>Cancel</a>
                 </span>
                 :
@@ -60,7 +67,7 @@ class BroadcastRow extends Component {
                     </div>
                     */}
                     <Link to={'/broadcast/id/'+ this.props.broadcast.id}
-                        onClick={() => this.props.changeAppMode('readOne', this.props.broadcast.id)}
+                        onClick={() => this.props.changeAppMode('readOne', this.props.broadcast.id, this.props.broadcast.groups.group_name)}
                         className='btn btn-info btn-default btn-sm mr-3'>Manage Message
                     </Link>
                     {/*

@@ -18,10 +18,10 @@ class BroadcastTable extends Component {
                         onDeleteMember={this.props.onDeleteMember} />
                 );
             }.bind(this));
-            
+
             return(
                 !rows.length
-                    ? <div className='alert alert-member-found'>No members found.</div>
+                    ? <div className='alert alert-member-found'>No group found.</div>
                     :
                     <div className="member-list">
                         <table className='table table-member'>
@@ -46,7 +46,7 @@ class BroadcastTable extends Component {
         
             );
         } else {
-            return <div className="col-md-12"><div className="row"><div className='alert alert-info'>Loading...</div></div></div>
+            return <div className="row"><div className="col-md-12"><div className='alert alert-info loading'>Loading...</div></div></div>
         } 
     }
 }

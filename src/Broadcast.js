@@ -25,6 +25,7 @@ class Broadcast extends Component {
               broadcastId: null,
               memberName: null,
               broadcast_url: this.props.broadcast_url,
+              broadcastGroupname: '',
               /*
               url_all_member: this.props.base_url + '/membermanagement/all_member/true',
               url_member_group: this.props.base_url + '/membermanagement/member_group',
@@ -58,16 +59,16 @@ class Broadcast extends Component {
       }
       
       // used when use clicks something that changes the current mode
-      changeAppMode(newMode, broadcastId, memberName){
-        //console.log('Change mode => ' + newMode + ' => ' + memberId + ' => ' + memberName);
+      changeAppMode(newMode, broadcastId, broadcastGroupname){
+        console.log('Change mode broadcast => ' + newMode + ' => ' + broadcastId + ' => ' + broadcastGroupname);
 
         this.setState({currentMode: newMode});
         if(broadcastId !== undefined){
             this.setState({broadcastId: broadcastId});
         }
 
-        if(memberName !== undefined){
-        this.setState({memberName: memberName});
+        if(broadcastGroupname !== undefined){
+            this.setState({broadcastGroupname: broadcastGroupname});
         }
         
         //this.onRender();
@@ -80,7 +81,7 @@ class Broadcast extends Component {
             case 'read':
                 break;
             case 'readOne':
-                modeComponent = <ReadOneBroadcastComponent url_one_member={this.state.url_read_one_member} broadcast_url={this.state.broadcast_url} broadcastId={this.state.broadcastId} changeAppMode={this.changeAppMode}/>;
+                modeComponent = <ReadOneBroadcastComponent url_one_member={this.state.url_read_one_member} broadcast_url={this.state.broadcast_url} broadcastId={this.state.broadcastId} changeAppMode={this.changeAppMode} broadcastGroupname={this.state.broadcastGroupname} />;
                 break;
             /*
             case 'create':
@@ -132,7 +133,7 @@ class Broadcast extends Component {
                         )}/>
                         */}
                         <Route path="/broadcast/id/:broadcastId" render={({ match }) => (
-                            <ReadOneBroadcastComponent url_one_member={this.state.url_read_one_member} broadcast_url={this.state.broadcast_url} broadcastId={match.params.broadcastId} changeAppMode={this.changeAppMode}/>
+                            <ReadOneBroadcastComponent url_one_member={this.state.url_read_one_member} broadcast_url={this.state.broadcast_url} broadcastId={match.params.broadcastId} changeAppMode={this.changeAppMode} broadcastGroupname={this.state.broadcastGroupname} />
                         )}/>
                         <Route exact path={this.props.match.url} render={({ match }) => (
                             <ReadBroadcastComponent params={this.state.params} usrMember={this.props.usr.name} changeName={this.props.changeName} url_all_member={this.state.url_all_member} broadcast_url={this.state.broadcast_url} url_delete_member={this.state.url_delete_member} url_search_member={this.state.url_search_member} changeAppMode={this.changeAppMode} />

@@ -5,6 +5,8 @@ import Header from '../../header';
 import BroadcastMessageTable from './broadcast_message_table';
 import TopActionsComponent from './top_actions';
 
+import BroadcastCreateMessage from './broadcast_create_message';
+
 import $ from 'jquery';
 
 class ReadOneBroadcastComponent extends Component {
@@ -21,15 +23,23 @@ class ReadOneBroadcastComponent extends Component {
             company: 'RS',
             group_name: '',
             active: 1,
+            broadcastGroupname: '',
+            isShow: true,
         }
     }
+
+    toggleShow = () => {
+        console.log('toggle show main..');
+        this.setState(state => ({ isShow: !state.isShow }));
+    };
 
     // on mount, read member data and them as this component's state
     componentDidMount(){
     
-       var broadcastId = this.props.broadcastId;
+       const broadcastId = this.props.broadcastId;
+       //const broadcastGroupname = this.props.broadcastGroupname;
 
-       console.log('broadcastId read one => ' + broadcastId + ', url => ' + this.props.broadcast_url);
+       console.log('broadcastId read one => ' + broadcastId + ', broadcastGroupname => ' + this.state.broadcastGroupname + ', url => ' + this.props.broadcast_url);
     
        /*this.serverRequestMember = $.get(this.props.source +'/'+ memberId,
            function (data) {
@@ -54,6 +64,11 @@ class ReadOneBroadcastComponent extends Component {
 
                 //fill broadcast messages to table
                 this.setState({broadcast_message: data});
+
+                if(data[0]){
+                    console.log('broadcastGroupname message response => ' + data[0].message);
+                    this.setState({broadcastGroupname: data[0].group[0].group_name});
+                }
 
                 /*
                 this.setState({id: data.member.id});
@@ -83,14 +98,47 @@ class ReadOneBroadcastComponent extends Component {
    render() {
     
        //list of broadcast messages
-       var filteredBroadcastMessages = this.state.broadcast_message;
-
+       const filteredBroadcastMessages = this.state.broadcast_message;
+       const broadcastGroupname = this.state.broadcastGroupname;
+       console.log('render broadcastGroupname => ' + broadcastGroupname);
+       
+       const greeting = 'Welcome to React';
+       
        return (
 
         <div role="main" className="main wrapper">
                 <div className='overflow-hidden'>
                     <Header searchInput={false} clearState={this.clearState} searchBox={false} onSearchMember={this.onSearchMember} requestMember={this.state.requestMember} />
-                    <TopActionsComponent searchInput={false} changeName={this.props.changeName} changeAppMode={this.props.changeAppMode} />
+                    <TopActionsComponent searchInput={false} changeName={this.props.changeName} changeAppMode={this.props.changeAppMode} textHeaderAction={'Broadcast Group Message :: ' + broadcastGroupname} buttonAction={<Button onClick={this.toggleShow} />} />
+                    
+                    <div>
+                        
+                        {/*
+                        <BunttonAction greeting={greeting} />
+                        <Greeting greeting="Welcome to React" />
+                        {this.state.isShow ? <Greeting greeting={greeting} /> : null}
+                        <Greeting greeting={greeting} isShow={this.state.isShow} />
+                        <button onClick={this.toggleShow} type="button">
+                        Toggle Show
+                        </button>
+                        {this.state.isShow ? <Greeting greeting={greeting} /> : null}
+                        */}
+                        
+                        {/*
+                        <Greeting greeting={greeting} isShow={this.state.isShow} />
+                        <Button onClick={this.toggleShow} />
+                        */}
+
+                        <div>
+                            {this.state.isShow ? <BroadcastCreateMessage /> : null}
+                        </div>
+
+                        <div>
+                            {/*this.state.isShow ? <Greeting greeting={greeting} /> : null*/}
+                        </div>
+
+                    </div>
+                    
                     <div className="container wrapper main">
                     <BroadcastMessageTable
                         url_delete_member={this.props.url_delete_member}
@@ -161,5 +209,53 @@ class ReadOneBroadcastComponent extends Component {
        );
    }
 }
+
+//const BunttonAction = props => <h1>{props.greeting}</h1>;
+//const Greeting = ({ greeting }) => <h1>{greeting}</h1>;
+//const Greeting = ({ greeting, isShow }) => isShow ? <h1>{greeting}</h1> : null;
+/*
+class Button1 extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isShow: true,
+        };
+    }
+
+    toggleShow = () => {
+        console.log('toggle show button..');
+        this.setState(state => ({ isShow: !state.isShow }));
+    };
+
+    render() {
+        return (
+        <button onClick={this.toggleShow} type="button" className="btn btn-sm btn-info">
+            Toggle Show
+        </button>
+        );
+    }
+}
+*/
+
+/*
+const Button = ({ onClick }) => (
+    <button onClick={onClick} type="button" className="btn btn-sm btn-danger">
+      Toggle Show
+    </button>
+);
+*/
+
+//const Greeting = ({ greeting }) => <h1>{greeting}</h1>;
+//const Greeting = ({ greeting, isShow }) => isShow ? <h1>{greeting}</h1> : null;
+
+//const Greeting = ({ greeting }) => <h1>{greeting}</h1>;
+
+const Button = ({ onClick }) => (
+    <button onClick={onClick} type="button" className="btn btn-sm btn-danger">
+    Toggle Show
+    </button>
+);
+
 
 export default ReadOneBroadcastComponent;

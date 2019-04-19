@@ -21,7 +21,7 @@ class BroadcastMessageTable extends Component {
             
             return(
                 !rows.length
-                    ? <div className='alert alert-member-found'>No members found.</div>
+                    ? <div className='alert alert-member-found'>No Message found.</div>
                     :
                     <div className="member-list">
                         <table className='table table-member'>
@@ -30,7 +30,7 @@ class BroadcastMessageTable extends Component {
                                     <th width="40%">Message</th>
                                     <th>Priority</th>
                                     <th>Created By</th>
-                                    <th width="15%">Actions</th>
+                                    <th width="15%">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,7 +48,7 @@ class BroadcastMessageTable extends Component {
         
             );
         } else {
-            return <div className="col-md-12"><div className="row"><div className='alert alert-info'>Loading...</div></div></div>
+            return <div className="row"><div className="col-md-12"><div className='alert alert-info loading'>Loading...</div></div></div>
         } 
     }
 }

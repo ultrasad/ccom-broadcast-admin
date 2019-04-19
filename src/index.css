@@ -89,6 +89,15 @@ body {
    }
    */
 
+   .bullet .bullhorn, .bullet .hangouts {
+      display: inline-block;
+      width: 1.4em;
+      height: 1.4em;
+      stroke-width: 0;
+      stroke: #7f8c8d;
+      fill: #7f8c8d;
+   }
+   
    .header-account {
       position:relative;
       margin-top: -4px;
@@ -132,7 +141,7 @@ body {
    .wrapper .btn {
        border: none;
        color:#fff;
-       opacity:.8;
+       opacity:.9;
    }
    .wrapper .btn:hover {
       cursor: pointer;
@@ -150,10 +159,10 @@ body {
       background-color: #f87c72e6;
    }
    .wrapper .btn-info:hover, .wrapper .btn-warning:hover, .wrapper .btn-primary:hover, .wrapper .btn-danger:hover {
-      opacity:.6;
+      opacity:.8;
    }
    .wrapper .btn-default, .wrapper .btn-default:hover {
-      background-color: #505F79;
+      background: rgb(0, 82, 204) none repeat scroll 0% 0%;
    }
    .wrapper .btn.focus, .wrapper .btn:focus {
       box-shadow: none;
@@ -213,6 +222,10 @@ body {
    #container .header {
        padding-top: 85px;
    }
+
+   #container .create-box {
+      padding: 20px 0;
+  }
   
    .search {
       flex:1;
@@ -269,12 +282,21 @@ body {
       padding-top: 10;
       font-size: 20px;
       font-weight: bold;
-      color: #fff;
+      color: rgb(66, 82, 110);
    }
   
    .alert.alert-member-found {
        background: rgba(255,255,255,.3);
        padding: 10px;
+   }
+
+   .main .loading {
+      background: #dcdee0;
+      border: #dcdee0;
+   }
+
+   .disabled-link {
+      pointer-events: none;
    }
 
    /*
@@ -556,6 +578,7 @@ body {
       #container .header {
           padding-top: 4em;
       }
+
       footer {
        margin-top:1em;
       }
