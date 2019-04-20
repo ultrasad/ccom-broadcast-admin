@@ -41,13 +41,13 @@ class TopActionsComponent extends Component {
                         <div className="row justify-content-between">
                             <div className="float-left">
                                 <h2>
-                                {searchInput ? 'Search results for "'  + searchInput + '"::' : ''}
-                                {textHeaderAction ? textHeaderAction : 'Broadcast by User Groups'}
+                                    {searchInput ? 'Search results for "'  + searchInput + '"::' : ''}
+                                    {textHeaderAction ? <p>{textHeaderAction}</p> : <p>Broadcast by User Groups</p>}
                                 </h2>
                             </div>
                             
                             <div className="float-right">
-                                <p>
+                                <span>
                                     {buttonAction ? buttonAction : ''}
 
                                     <Greeting greeting={greeting} isShow={this.state.isShow} />
@@ -60,7 +60,7 @@ class TopActionsComponent extends Component {
                                         Import member
                                     </Link>
                                     */}
-                                </p>
+                                </span>
                             </div>
                             
                             {/*

@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import ReadBroadcastComponent from './Components/Broadcast/read_broadcasts';
-import ReadOneBroadcastComponent from './Components/Broadcast/read_one_broadcast';
+import ReadBroadcastMessageComponent from './Components/Broadcast/read_broadcast_message';
+
 /*
 import CreateMemberComponent from './Components/Broadcast/create_member';
 import ImportMemberComponent from './Components/Broadcast/import_member'
@@ -80,8 +81,8 @@ class Broadcast extends Component {
         switch(this.state.currentMode){
             case 'read':
                 break;
-            case 'readOne':
-                modeComponent = <ReadOneBroadcastComponent url_one_member={this.state.url_read_one_member} broadcast_url={this.state.broadcast_url} broadcastId={this.state.broadcastId} changeAppMode={this.changeAppMode} broadcastGroupname={this.state.broadcastGroupname} />;
+            case 'readMessageGroup':
+                modeComponent = <ReadBroadcastMessageComponent url_one_member={this.state.url_read_one_member} broadcast_url={this.state.broadcast_url} broadcastId={this.state.broadcastId} changeAppMode={this.changeAppMode} broadcastGroupname={this.state.broadcastGroupname} />;
                 break;
             /*
             case 'create':
@@ -116,37 +117,35 @@ class Broadcast extends Component {
 
         //return this.onRender();
         return (
-                <div>
-                    <Switch>
-                        {/*
-                        <Route exact path="/broadcast/id/:memberId/password" render={({ match }) => (
-                            <ChangePasswordComponent url_one_member={this.state.url_read_one_member} url_change_password={this.state.url_change_password} memberName={this.state.memberName} memberId={match.params.memberId} changeAppMode={this.changeAppMode}/>
-                        )}/>
-                        <Route exact path="/broadcast/id/:memberId/edit" render={({ match }) => (
-                            <UpdateMemberComponent url_one_member={this.state.url_read_one_member} url_member_group={this.state.url_member_group} url_update_member={this.state.url_update_member} memberId={match.params.memberId} changeAppMode={this.changeAppMode}/>
-                        )}/>
-                        <Route path="/broadcast/create" render={({ match }) => (
-                            <CreateMemberComponent url_create_member={this.state.url_create_member} url_member_group={this.state.url_member_group} changeAppMode={this.changeAppMode}/>
-                        )}/>
-                        <Route path="/broadcast/import" render={({ match }) => (
-                            <ImportMemberComponent url_import_member={this.state.url_import_member} changeAppMode={this.changeAppMode}/>
-                        )}/>
-                        */}
-                        <Route path="/broadcast/id/:broadcastId" render={({ match }) => (
-                            <ReadOneBroadcastComponent url_one_member={this.state.url_read_one_member} broadcast_url={this.state.broadcast_url} broadcastId={match.params.broadcastId} changeAppMode={this.changeAppMode} broadcastGroupname={this.state.broadcastGroupname} />
-                        )}/>
-                        <Route exact path={this.props.match.url} render={({ match }) => (
-                            <ReadBroadcastComponent params={this.state.params} usrMember={this.props.usr.name} changeName={this.props.changeName} url_all_member={this.state.url_all_member} broadcast_url={this.state.broadcast_url} url_delete_member={this.state.url_delete_member} url_search_member={this.state.url_search_member} changeAppMode={this.changeAppMode} />
-                        )}/>
-                        
-                        {/*
-                            <Route path="/broadcast/id/:memberId/password" component={ChangePasswordComponent}/>
-                            <Route path="/broadcast/id/:memberId/edit" component={UpdateMemberComponent}/>
-                        */}
-                        
-                        <Redirect to={'/notfound'} />
-                    </Switch>
-                </div>
+                <Switch>
+                    {/*
+                    <Route exact path="/broadcast/id/:memberId/password" render={({ match }) => (
+                        <ChangePasswordComponent url_one_member={this.state.url_read_one_member} url_change_password={this.state.url_change_password} memberName={this.state.memberName} memberId={match.params.memberId} changeAppMode={this.changeAppMode}/>
+                    )}/>
+                    <Route exact path="/broadcast/id/:memberId/edit" render={({ match }) => (
+                        <UpdateMemberComponent url_one_member={this.state.url_read_one_member} url_member_group={this.state.url_member_group} url_update_member={this.state.url_update_member} memberId={match.params.memberId} changeAppMode={this.changeAppMode}/>
+                    )}/>
+                    <Route path="/broadcast/create" render={({ match }) => (
+                        <CreateMemberComponent url_create_member={this.state.url_create_member} url_member_group={this.state.url_member_group} changeAppMode={this.changeAppMode}/>
+                    )}/>
+                    <Route path="/broadcast/import" render={({ match }) => (
+                        <ImportMemberComponent url_import_member={this.state.url_import_member} changeAppMode={this.changeAppMode}/>
+                    )}/>
+                    */}
+                    <Route path="/broadcast/id/:broadcastId" render={({ match }) => (
+                        <ReadBroadcastMessageComponent url_one_member={this.state.url_read_one_member} broadcast_url={this.state.broadcast_url} broadcastId={match.params.broadcastId} changeAppMode={this.changeAppMode} broadcastGroupname={this.state.broadcastGroupname} />
+                    )}/>
+                    <Route exact path={this.props.match.url} render={({ match }) => (
+                        <ReadBroadcastComponent params={this.state.params} usrMember={this.props.usr.name} changeName={this.props.changeName} url_all_member={this.state.url_all_member} broadcast_url={this.state.broadcast_url} url_delete_member={this.state.url_delete_member} url_search_member={this.state.url_search_member} changeAppMode={this.changeAppMode} />
+                    )}/>
+                    
+                    {/*
+                        <Route path="/broadcast/id/:memberId/password" component={ChangePasswordComponent}/>
+                        <Route path="/broadcast/id/:memberId/edit" component={UpdateMemberComponent}/>
+                    */}
+                    
+                    <Redirect to={'/notfound'} />
+                </Switch>
         );
       }
 }

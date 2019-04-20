@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 //import {PostData} from '../../Services/PostData';
 import Header from '../../header';
+import Footer from '../../footer';
 
 import $ from 'jquery';
 //import './Login.css';
@@ -122,75 +123,80 @@ class Login extends Component {
         $('.page-header h1').text('Login');
 
         return (
-        <div>
+            <React.Fragment>
+                <div role="main" id="main" className="main wrapper center-panel-full login-page">
+                    <Header searchBox={false} />
+                    <div className="container wrapper main header">
+                        {/*<span>Username: {this.props.auth.userName}</span>*/}
+                        <div className="col-sm-5 col-xs-12 form-login">
+                            {
+                            
+                                this.state.loginStatus === "Unable to login." ?
+                                    <div className='alert alert-danger'>
+                                        Unable to Login, Please try again.
+                                    </div>
+                                : null
+                            }
+                            <h6>Log in to continue to Broadcast management</h6>
+                            <div className="login-box col-md-12">
+                                <form onSubmit={this.onLogin}>
+                                    <table className='table table-member'>
+                                        <tbody>
+                                            <tr>
+                                                <td>UserName</td>
+                                                <td>
+                                                    <input
+                                                    type='text'
+                                                    name="username"
+                                                    className='form-control form-control-sm'
+                                                    required
+                                                    onChange={this.onChange} />
+                                                </td>
+                                            </tr>
 
-            <Header searchBox={false} />
-            <div className="container wrapper main header">
-                {/*<span>Username: {this.props.auth.userName}</span>*/}
-                <div className="col-sm-5 col-xs-12 form-login">
-                    {
-                    
-                        this.state.loginStatus === "Unable to login." ?
-                            <div className='alert alert-danger'>
-                                Unable to Login, Please try again.
+                                            <tr>
+                                                <td>Password</td>
+                                                <td>
+                                                    <input
+                                                    type='password'
+                                                    name="password"
+                                                    className='form-control form-control-sm'
+                                                    required
+                                                    onChange={this.onChange} />
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td></td>
+                                                <td>
+                                                    <button
+                                                    className='btn btn-login btn-sm'
+                                                    type='Submit'
+                                                    onClick={() => this.onLogin}>Login</button>
+                                                </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                                </form>
                             </div>
-                        : null
-                    }
-                    <form onSubmit={this.onLogin}>
-                        <table className='table table-member'>
-                            <tbody>
-                                <tr>
-                                    <td>UserName</td>
-                                    <td>
-                                        <input
-                                        type='text'
-                                        name="username"
-                                        className='form-control form-control-sm'
-                                        required
-                                        onChange={this.onChange} />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Password</td>
-                                    <td>
-                                        <input
-                                        type='password'
-                                        name="password"
-                                        className='form-control form-control-sm'
-                                        required
-                                        onChange={this.onChange} />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <button
-                                        className='btn btn-login btn-sm'
-                                        type='Submit'
-                                        onClick={() => this.onLogin}>Login</button>
-                                    </td>
-                                    </tr>
-                            </tbody>
-                        </table>
-                    </form>
-                </div>
-                {/*
-                <div className="row" id="Body">
-                    <div className="col-md-5 pull-left">
-                        <label>Username</label>
-                        <input type="text" name="username" className="form-control input-sm" onChange={this.onChange}/>
-                        <label>Password</label>
-                        <input type="password" name="password" className="form-control input-sm" onChange={this.onChange}/>
-                        <br />
-                        <input type="submit" value="Login" className="btn btn-sm btn-success" onClick={this.login}/>
-                        &nbsp;&nbsp;<a className="" href="/signup">Registration</a>
+                        </div>
+                        {/*
+                        <div className="row" id="Body">
+                            <div className="col-md-5 pull-left">
+                                <label>Username</label>
+                                <input type="text" name="username" className="form-control input-sm" onChange={this.onChange}/>
+                                <label>Password</label>
+                                <input type="password" name="password" className="form-control input-sm" onChange={this.onChange}/>
+                                <br />
+                                <input type="submit" value="Login" className="btn btn-sm btn-success" onClick={this.login}/>
+                                &nbsp;&nbsp;<a className="" href="/signup">Registration</a>
+                            </div>
+                        </div>
+                        */}
                     </div>
                 </div>
-                */}
-            </div>
-        </div>
+                <Footer />
+            </React.Fragment>
         );
     }
 }

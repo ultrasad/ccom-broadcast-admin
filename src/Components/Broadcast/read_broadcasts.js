@@ -8,6 +8,7 @@ import TopActionsComponent from './top_actions';
 import BroadcastTable from './broadcast_table';
 
 import Header from '../../header';
+import Footer from '../../footer';
 
 // component that contains all the logic and other smaller components
 // that form the Read Members view
@@ -298,26 +299,29 @@ class ReadBroadcastComponent extends Component {
         $('.page-header h2').text('Members List');
 
         return (
-            <div role="main" className="main wrapper">
-                <div className='overflow-hidden'>
-                    <Header searchInput={searchInput} clearState={this.clearState} searchBox={false} onSearchMember={this.onSearchMember} />
-                    <TopActionsComponent searchInput={searchInput} changeName={this.props.changeName} changeAppMode={this.props.changeAppMode} />
-                    <div className="container wrapper main">
-                    <BroadcastTable
-                        url_delete_member={this.props.url_delete_member}
-                        broadcasts={filteredBroadcast}
-                        memberResults={memberResults}
-                        showNextpage={showNextpage}
-                        changeAppMode={this.props.changeAppMode}
-                        onDeleteMember={this.onDeleteMember}
-                        nextPage={this.nextPage}
-                        prevPage={this.prevPage}
-                        memberNextPage={memberNextPage}
-                        memberPrevPage={memberPrevPage}
-                        memberCurrentPage={memberCurrentPage} />
+            <React.Fragment>
+                <div role="main" id="main" className="main wrapper center-panel-full">
+                    <div className='overflow-hidden'>
+                        <Header searchInput={searchInput} clearState={this.clearState} searchBox={false} onSearchMember={this.onSearchMember} />
+                        <TopActionsComponent searchInput={searchInput} changeName={this.props.changeName} changeAppMode={this.props.changeAppMode} />
+                        <div className="container wrapper main">
+                        <BroadcastTable
+                            url_delete_member={this.props.url_delete_member}
+                            broadcasts={filteredBroadcast}
+                            memberResults={memberResults}
+                            showNextpage={showNextpage}
+                            changeAppMode={this.props.changeAppMode}
+                            onDeleteMember={this.onDeleteMember}
+                            nextPage={this.nextPage}
+                            prevPage={this.prevPage}
+                            memberNextPage={memberNextPage}
+                            memberPrevPage={memberPrevPage}
+                            memberCurrentPage={memberCurrentPage} />
+                        </div>
                     </div>
                 </div>
-            </div>
+                <Footer />
+            </React.Fragment>
         );
     }
 }

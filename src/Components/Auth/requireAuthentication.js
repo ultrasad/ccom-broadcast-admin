@@ -39,12 +39,12 @@ export default function (ComposedComponent) {
 
     render() {
       return (
-        <div>
+        <React.Fragment>
           {this.props.isAuthenticated === true
             ? <ComposedComponent {...this.props}/>
             : null
           }
-        </div>
+        </React.Fragment>
       );
     }
 

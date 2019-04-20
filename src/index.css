@@ -72,6 +72,40 @@ body {
       flex-direction:column;
    }
 
+   html, body {
+      height: 100%;
+   }
+
+   .container-full {
+      height: auto !important;
+      min-height: 100%;
+   }
+
+   #container #main, .center-panel-full {
+      background-color: #fff;
+      font-size: 0.9em;
+      height: auto !important;
+      margin: 0;
+      min-height: 100%;
+      padding: 0 0 40px 0;
+      text-align: left;
+   }
+
+   #container #main.login-page {
+      color: rgb(222, 235, 255);
+      text-align: center;
+      background-color: #0747a6;
+   }
+
+   .center-panel-full .login-box {
+      background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+      padding: 20px;
+   }
+
+   .center-panel-full .login-box tr td {
+      background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+   }
+
    /*
    #container.wrapper {
       display: flex;
@@ -89,13 +123,20 @@ body {
    }
    */
 
-   .bullet .bullhorn, .bullet .hangouts {
+   .bullet .bullhorn, .bullet .hangouts, .bullet .heart {
       display: inline-block;
       width: 1.4em;
       height: 1.4em;
       stroke-width: 0;
       stroke: #7f8c8d;
       fill: #7f8c8d;
+   }
+
+   .bullet .heart {
+      width: 1.2em;
+      height: 1.2em;
+      stroke: #d71b49;
+      fill: #d71b49;
    }
    
    .header-account {
@@ -225,7 +266,7 @@ body {
 
    #container .create-box {
       padding: 20px 0;
-  }
+   }
   
    .search {
       flex:1;
@@ -338,6 +379,7 @@ body {
    .table.table-member td, .table.table-member th {
       padding:.4rem;
       background: rgba(255,255,255,.1);
+      background: rgb(237, 237, 242);
    }
    .table.table-member  > thead > tr > th {
       border-bottom: 0px;
@@ -345,6 +387,7 @@ body {
    .table.table-member th {
       font-weight:400;
       background:rgba(255,255,255,.3);
+      background: #DBE0E7;
    }
    .table.table-member tr:nth-of-type(even) td {
       background:rgba(255,255,255,.2);
@@ -509,9 +552,14 @@ body {
       color:rgba(255,255,255,.6);
    }
    footer {
-      margin-top:2em;
-      padding:1em 0;
-      background:#fff;
+      /*margin-top:2em;
+      padding:1em 0;*/
+      height: 40px;
+      position: fixed;
+      background:#F4F5F7;
+      color: rgb(66, 82, 110);
+      line-height: 40px;
+      font-size: 0.9em;
    }
    .me {
       float:right;
@@ -556,6 +604,16 @@ body {
       color:rgba(255,255,255,.9);
       margin-bottom:1rem;
    }
+
+   footer.footer {
+      flex: 0 0 45px;
+      bottom: 0;
+      display: block;
+      padding-bottom: 0;
+      width: 100%;
+   }
+
+
    @media (min-width:1230px) {
       pre {
        font-size:16px;

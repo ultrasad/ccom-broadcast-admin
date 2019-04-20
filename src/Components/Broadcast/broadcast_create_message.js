@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 import $ from 'jquery';
 
@@ -24,10 +24,10 @@ class BroadcastCreateMessage extends Component {
             submitStatus: null,
             fields: {},
             message: '',
-            errors: 'Unable to save member. Please try again.'
+            errors: 'Unable to save member. Please try again.',
         }
 
-        //console.log('Create member url => ' + this.props.source);
+        console.log('Create message broadcast url => ' + this.props.broadcast_url);
 
         // This line is important!
         this.onCreateMessage = this.onCreateMessage.bind(this);
@@ -145,17 +145,17 @@ class BroadcastCreateMessage extends Component {
         
         // submit form data to api
         $.ajax({
-            url: this.props.broadcast_url + '/create_message',
+            url: this.props.broadcast_url + '/broadcast/create_message',
             type : "POST",
             dataType: 'json',
-            //contentType : 'application/json',
+            contentType : 'application/json',
             //crossDomain:true,
             //crossOrigin: false,
             //headers : {
                 //'Content-Type' : 'multipart/form-data; charset=UTF-8'
-           // },
-            //data : JSON.stringify(form_data),
-            data: form_data,
+            // },
+            data : JSON.stringify(form_data),
+            //data: form_data,
             success : function(response){
         
                 // api message

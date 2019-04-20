@@ -19,15 +19,27 @@ if(base_url === 'http://localhost:3000'){
 }
 
 console.log('base url => ' + base_url);
-
+/*
+const PrimaryLayout = () => (
+    <div className="primary-layout">
+      <header>
+        Our React Router 4 App
+      </header>
+      <main>
+        <Route path="/" exact component={Broadcast} />
+        <Route path="/users" component={Members} />
+      </main>
+    </div>
+);
+*/
 const AuthMembers = requireAuthentication(Members);
 const AuthBroadcast = requireAuthentication(Broadcast);
 const Routes = ({ match }) => (
     <BrowserRouter basename='/'>
+        {/*<PrimaryLayout />*/}
         <Switch>
             <Route exact path="/" component={Welcome}/>
             <Route path="/home" component={Home}/>
-            {/*<Route path="/login" component={() => (<Login base_url={base_url} {...this.props} />)} />*/}
             <Route path="/login" render={(props) => <Login base_url={base_url} {...props} />} />
             <Route path="/members" render={(props) => <AuthMembers base_url={base_url} {...props} />} />
             <Route path="/broadcast" render={(props) => <AuthBroadcast base_url={base_url} broadcast_url={broadcast_url} {...props} />} />

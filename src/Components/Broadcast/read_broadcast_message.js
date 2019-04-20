@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import {Link} from 'react-router-dom';
 import Header from '../../header';
+import Footer from '../../footer';
 
 import BroadcastMessageTable from './broadcast_message_table';
 import TopActionsComponent from './top_actions';
@@ -9,7 +10,7 @@ import BroadcastCreateMessage from './broadcast_create_message';
 
 import $ from 'jquery';
 
-class ReadOneBroadcastComponent extends Component {
+class ReadBroadcastMessageComponent extends Component {
 
     constructor(props){
         super(props);
@@ -24,7 +25,7 @@ class ReadOneBroadcastComponent extends Component {
             group_name: '',
             active: 1,
             broadcastGroupname: '',
-            isShow: true,
+            isShow: false,
         }
     }
 
@@ -39,7 +40,7 @@ class ReadOneBroadcastComponent extends Component {
        const broadcastId = this.props.broadcastId;
        //const broadcastGroupname = this.props.broadcastGroupname;
 
-       console.log('broadcastId read one => ' + broadcastId + ', broadcastGroupname => ' + this.state.broadcastGroupname + ', url => ' + this.props.broadcast_url);
+       console.log('broadcastId message group => ' + broadcastId + ', broadcastGroupname => ' + this.state.broadcastGroupname + ', broadcast url => ' + this.props.broadcast_url);
     
        /*this.serverRequestMember = $.get(this.props.source +'/'+ memberId,
            function (data) {
@@ -104,11 +105,11 @@ class ReadOneBroadcastComponent extends Component {
        //const greeting = 'Welcome to React Greeting';
        
        return (
-
-        <div role="main" className="main wrapper">
+        <React.Fragment>
+            <div role="main" id="main" className="main wrapper center-panel-full">
                 <div className='overflow-hidden'>
                     <Header searchInput={false} clearState={this.clearState} searchBox={false} onSearchMember={this.onSearchMember} requestMember={this.state.requestMember} />
-                    <TopActionsComponent searchInput={false} changeName={this.props.changeName} changeAppMode={this.props.changeAppMode} textHeaderAction={'Broadcast Group Message :: ' + broadcastGroupname} buttonAction={<Button onClick={this.toggleShow} />} />
+                    <TopActionsComponent searchInput={false} changeName={this.props.changeName} changeAppMode={this.props.changeAppMode} textHeaderAction={'Broadcast Group Message :: ' + broadcastGroupname} buttonAction={<ButtonCreateMessage onClick={this.toggleShow} />} />
                     
                     <div>
                         
@@ -129,7 +130,7 @@ class ReadOneBroadcastComponent extends Component {
                         */}
 
                         <div>
-                            {this.state.isShow ? <BroadcastCreateMessage /> : null}
+                            {this.state.isShow ? <BroadcastCreateMessage broadcast_url={this.props.broadcast_url} /> : null}
                         </div>
 
                         <div>
@@ -150,7 +151,7 @@ class ReadOneBroadcastComponent extends Component {
                 </div>
             </div>
 
-           /*
+           {/*
            <div>
                <Header searchBox={false} />
                <div className="container wrapper main header">
@@ -204,7 +205,9 @@ class ReadOneBroadcastComponent extends Component {
                     </form>
                </div>
            </div>
-           */
+           */}
+           <Footer />
+          </React.Fragment>
        );
    }
 }
@@ -250,11 +253,11 @@ const Button = ({ onClick }) => (
 
 //const Greeting = ({ greeting }) => <h1>{greeting}</h1>;
 
-const Button = ({ onClick }) => (
+const ButtonCreateMessage = ({ onClick }) => (
     <button onClick={onClick} type="button" className="btn btn-sm btn-danger">
-    Toggle Show
+        Toggle ToggleBtnAction
     </button>
 );
 
 
-export default ReadOneBroadcastComponent;
+export default ReadBroadcastMessageComponent;
