@@ -123,13 +123,13 @@ body {
    }
    */
 
-   .bullet .bullhorn, .bullet .hangouts, .bullet .heart {
+   .bullet .bullhorn, .bullet .hangouts, .bullet .heart, .bullet .clock {
       display: inline-block;
       width: 1.4em;
       height: 1.4em;
       stroke-width: 0;
-      stroke: #7f8c8d;
-      fill: #7f8c8d;
+      stroke: #2A91A8;
+      fill: #2A91A8;
    }
 
    .bullet .heart {
@@ -267,7 +267,11 @@ body {
    #container .create-box {
       padding: 20px 0;
    }
-  
+   
+   #container .create-box-message {
+      padding: 0;
+   }
+   
    .search {
       flex:1;
       margin-left:5em;
@@ -391,6 +395,7 @@ body {
    }
    .table.table-member tr:nth-of-type(even) td {
       background:rgba(255,255,255,.2);
+      background: rgba(244, 245, 247, 0.12);
    }
    .table.table-member td:first-child {
       text-align:left;

@@ -24,39 +24,57 @@ class ReadBroadcastMessageComponent extends Component {
             company: 'RS',
             group_name: '',
             active: 1,
+            broadcastGroupId: '',
             broadcastGroupname: '',
-            isShow: false,
+            showCreateForm: false,
+            btnTextMessage: 'สร้างข้อความใหม่',
+            broadcast_url: this.props.broadcast_url
         }
+
+        
+        this.toggleShow = this.toggleShow.bind(this);
+        this.requestBroadcastMessage = this.requestBroadcastMessage.bind(this);
+        //this.isMounted = true;
+    }
+
+    //_isMounted = false;
+
+    callToggle = () => {
+        //console.log('call toggle show....');
+        //this.setState({showCreateForm: false});
+
+        //const btnText = (this.state.btnTextMessage === 'สร้างข้อความใหม่' ? 'ยกเลิก' : 'สร้างข้อความใหม่');
+        //this.setState({btnTextMessage: btnText});
+        //this.toggleShow();
+
+        this.setState({
+            ...this.state,
+            btnTextMessage: 'สร้างข้อความใหม่', 
+            showCreateForm: false,
+            isAddTripState: true
+          });
+        
+
+          //re call request broadcast message
+          console.log('call request broadcast message....');
+          this.requestBroadcastMessage();
     }
 
     toggleShow = () => {
+        //this._isMounted = false;
+        console.log('toggle Show box, read box main');
+        //if(this._isMounted){
         console.log('toggle show main..');
-        this.setState(state => ({ isShow: !state.isShow }));
+        this.setState(state => ({ showCreateForm: !state.showCreateForm }));
+        const btnText = (this.state.btnTextMessage === 'สร้างข้อความใหม่' ? 'ยกเลิก' : 'สร้างข้อความใหม่');
+        this.setState({btnTextMessage: btnText});
+        //}
     };
 
-    // on mount, read member data and them as this component's state
-    componentDidMount(){
-    
-       const broadcastId = this.props.broadcastId;
-       //const broadcastGroupname = this.props.broadcastGroupname;
+    requestBroadcastMessage(){
 
-       console.log('broadcastId message group => ' + broadcastId + ', broadcastGroupname => ' + this.state.broadcastGroupname + ', broadcast url => ' + this.props.broadcast_url);
-    
-       /*this.serverRequestMember = $.get(this.props.source +'/'+ memberId,
-           function (data) {
-               console.log('data => ' + data);
-               this.setState({id: data.member.id});
-               this.setState({username: data.member.username});
-               this.setState({email: data.member.email});
-               this.setState({phone: data.member.phone});
-               this.setState({first_name: data.member.first_name});
-               this.setState({last_name: data.member.last_name});
-               this.setState({company: data.member.company});
-               this.setState({group_name: data.member.group_name});
-           }.bind(this));*/
-
-        this.serverRequestMember = $.ajax({
-            url: this.props.broadcast_url +'/broadcast/msg/'+ broadcastId,
+        this.serverRequestBroadcastMessage = $.ajax({
+            url: this.props.broadcast_url +'/broadcast/msg/'+ this.state.broadcastGroupId,
             dataType: 'json',
             //crossDomain:true,
             success: function(data) {
@@ -86,14 +104,59 @@ class ReadBroadcastMessageComponent extends Component {
             error: function(xhr, status, err) {
                 console.error(this.props.url_one_member, status, err.toString());
             }.bind(this)
+
         });
+    }
+
+    // on mount, read member data and them as this component's state
+    componentDidMount(){
+
+        //this._ismounted = true;
+        console.log('read broadcast did mount >>>>>');
+        
+        const broadcastId = this.props.broadcastId;
+        this.setState({broadcastGroupId: broadcastId}, function onStateChange(){
+            this.requestBroadcastMessage();
+        });
+       
+        //const broadcastGroupname = this.props.broadcastGroupname;
+        console.log('broadcastId message group => ' + broadcastId + ', broadcastGroupname => ' + this.state.broadcastGroupname + ', broadcast url => ' + this.props.broadcast_url);
+       
+        /*this.serverRequestMember = $.get(this.props.source +'/'+ memberId,
+           function (data) {
+               console.log('data => ' + data);
+               this.setState({id: data.member.id});
+               this.setState({username: data.member.username});
+               this.setState({email: data.member.email});
+               this.setState({phone: data.member.phone});
+               this.setState({first_name: data.member.first_name});
+               this.setState({last_name: data.member.last_name});
+               this.setState({company: data.member.company});
+               this.setState({group_name: data.member.group_name});
+           }.bind(this));*/
     
-       $('.page-header h2').text('Read Broadcast');
+       //$('.page-header h2').text('Read Broadcast');
    }
     
    // on unmount, kill member fetching in case the request is still pending
    componentWillUnmount() {
-       this.serverRequestMember.abort();
+       //this._isMounted = false;
+       //this._ismounted = false;
+       console.log('read broadcast unmount component...');
+       this.serverRequestBroadcastMessage.abort();
+       //this.setState({btnTextMessage: 'สร้างข้อความใหม่'});
+       //this.setState({showCreateForm: false});
+   }
+
+   renderCreateMessage() {
+       //console.log('this.state.showCreateForm => ' + this.state.showCreateForm);
+       /*
+        if(!this.state.showCreateForm || !this._ismounted) {
+            return null;
+        } else {
+            return(<BroadcastCreateMessage broadcast_url={this.state.broadcast_url} broadcast_group_id={this.state.broadcastGroupId} toggleShow={this.toggleShow} />);
+        }
+        */
    }
 
    render() {
@@ -101,7 +164,8 @@ class ReadBroadcastMessageComponent extends Component {
        //list of broadcast messages
        const filteredBroadcastMessages = this.state.broadcast_message;
        const broadcastGroupname = this.state.broadcastGroupname;
-       console.log('render broadcastGroupname => ' + broadcastGroupname);
+       const broadcastGroupId = this.state.broadcastGroupId;
+       console.log('render broadcastGroupname => ' + broadcastGroupname + ', group ID => ' + broadcastGroupId);
        //const greeting = 'Welcome to React Greeting';
        
        return (
@@ -109,7 +173,7 @@ class ReadBroadcastMessageComponent extends Component {
             <div role="main" id="main" className="main wrapper center-panel-full">
                 <div className='overflow-hidden'>
                     <Header searchInput={false} clearState={this.clearState} searchBox={false} onSearchMember={this.onSearchMember} requestMember={this.state.requestMember} />
-                    <TopActionsComponent searchInput={false} changeName={this.props.changeName} changeAppMode={this.props.changeAppMode} textHeaderAction={'Broadcast Group Message :: ' + broadcastGroupname} buttonAction={<ButtonCreateMessage onClick={this.toggleShow} />} />
+                    <TopActionsComponent searchInput={false} changeName={this.props.changeName} changeAppMode={this.props.changeAppMode} textHeaderAction={'Broadcast Group Message :: ' + broadcastGroupname} buttonAction={<ButtonCreateMessage onClick={this.toggleShow} btnText={this.state.btnTextMessage} otherParam={''} />} />
                     
                     <div>
                         
@@ -130,7 +194,9 @@ class ReadBroadcastMessageComponent extends Component {
                         */}
 
                         <div>
-                            {this.state.isShow ? <BroadcastCreateMessage broadcast_url={this.props.broadcast_url} /> : null}
+                            {/*this.renderCreateMessage()*/}
+                            {/* {this.state.isAddTripState && <AnotherComponent />} */}
+                            {this.state.showCreateForm && <BroadcastCreateMessage broadcast_url={this.state.broadcast_url} broadcast_group_id={this.state.broadcastGroupId} toggleShow={this.toggleShow} callToggle={this.callToggle.bind(this)} />}
                         </div>
 
                         <div>
@@ -140,13 +206,16 @@ class ReadBroadcastMessageComponent extends Component {
                     </div>
                     
                     <div className="container wrapper main">
-                    <BroadcastMessageTable
+                    { 
+                        this.state.showCreateForm ? null : 
+                        <BroadcastMessageTable
                         url_delete_member={this.props.url_delete_member}
                         broadcasts={filteredBroadcastMessages}
                         changeAppMode={this.props.changeAppMode}
                         onDeleteMember={this.onDeleteMember}
                         nextPage={this.nextPage}
                         prevPage={this.prevPage}/>
+                    }
                     </div>
                 </div>
             </div>
@@ -253,9 +322,9 @@ const Button = ({ onClick }) => (
 
 //const Greeting = ({ greeting }) => <h1>{greeting}</h1>;
 
-const ButtonCreateMessage = ({ onClick }) => (
-    <button onClick={onClick} type="button" className="btn btn-sm btn-danger">
-        Toggle ToggleBtnAction
+const ButtonCreateMessage = ({ onClick, btnText }) => (
+    <button onClick={onClick} type="button" className="btn btn-sm btn-default" id="btn-message-toggle">
+        { btnText }
     </button>
 );
 

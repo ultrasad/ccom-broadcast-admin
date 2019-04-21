@@ -35,13 +35,19 @@ class BroadcastRow extends Component {
     render() {
     return (
         <tr>
-             <td><span className="bullet">
-            <svg className="hangouts" version="1.1" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+            <td><span className="bullet">
+            <svg className="clock" xmlns="http://www.w3.org/2000/svg" version="1.1" width="512" height="512" viewBox="0 0 512 512">
+            <title/>
+            <g id="icomoon-ignore">
+            </g>
+            <path d="M256 0c-141.385 0-256 114.615-256 256s114.615 256 256 256 256-114.615 256-256-114.615-256-256-256zM329.372 374.628l-105.372-105.373v-141.255h64v114.745l86.628 86.627-45.256 45.256z"/>
+            </svg>
+            {/*<svg className="hangouts" version="1.1" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
             <title></title>
             <g id="icomoon-ignore">
             </g>
             <path d="M255.9 0c-122.1 0-221.1 99-221.1 221.1 0 115.7 105.4 209.5 221.1 209.5v81.4c134.3-68.1 221.3-177.8 221.3-290.9 0-122.1-99.2-221.1-221.3-221.1zM224 256c0 26.5-14.3 48-32 48v-48h-64v-96h96v96zM384 256c0 26.5-14.3 48-32 48v-48h-64v-96h96v96z"></path>
-            </svg>
+            </svg>*/}
             </span>
             {this.props.broadcast.groups.group_name}
             </td>

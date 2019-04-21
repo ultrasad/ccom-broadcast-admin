@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
 
 // component that renders a single member row
 class BroadcastMessageRow extends Component {
@@ -47,7 +47,7 @@ class BroadcastMessageRow extends Component {
             </span>
             {this.props.broadcast_msg.message}
             </td>
-            <td>{this.props.broadcast_msg.priority}</td>
+            <td><span className={'badge badge-' + this.props.broadcast_msg.priority}>{this.props.broadcast_msg.priority}</span></td>
             <td>Super99</td>
             <td>
             {

@@ -194,7 +194,7 @@ class ImportMemberComponent extends Component {
                             */
                             }
                             <div className="file_import_member">
-                                <a className='btn btn-info btn-sm'>
+                                <a href="#/import" className='btn btn-info btn-sm'>
                                     Choose File...
                                     <input type="file" ref="fileMember" className='input-file-member' onChange={this.onChangeFile} name="input-file-member" size="40" />
                                 </a>&nbsp;<span className='label label-primary label-file-member' id="label-file-member">{this.state.filename}</span>

@@ -10,20 +10,25 @@ class BroadcastCreateMessage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            email: '',
-            sales_employee: '',
-            new_password: '',
-            phone: '02 511 0555',
-            first_name: '',
-            last_name: '',
-            company: 'RS',
-            active: 1,
+            username: 'Super99',
+            message: '',
+            description: '',
+            startdate: '',
+            starttime: '',
+            enddate: '',
+            endtime: '',
+            priority: '',
+            created: '2019-04-21',
+            created_by: 'Super99',
+            updated_by: '',
+            deleted_by: '',
+            last_modified: '',
+            active: 'Y',
             groups: [],
+            broadcast_group_id: '',
             selectedGroupId: '',
             submitStatus: null,
             fields: {},
-            message: '',
             errors: 'Unable to save member. Please try again.',
         }
 
@@ -33,6 +38,8 @@ class BroadcastCreateMessage extends Component {
         this.onCreateMessage = this.onCreateMessage.bind(this);
         this.onMessageChange = this.onMessageChange.bind(this);
         this.onGroupChange = this.onGroupChange.bind(this);
+
+        this.getAuthenticationUser = this.getAuthenticationUser.bind(this);
 
         /*
         this.onFirstNameChange = this.onFirstNameChange.bind(this);
@@ -54,13 +61,19 @@ class BroadcastCreateMessage extends Component {
             });
         }.bind(this));
         */
-    
-        $('.page-header h2').text('Create Member');
+
+       this._ismounted = true;
+        $('.page-header h2').text('Create Message');
     }
 
     componentWillUnmount() {
         //this.serverRequest.abort();
-        console.log('unmount create member..');
+        console.log('unmount create message..');
+        this._ismounted = false;
+        if(this.serverCreateMessage){
+            console.log('unmount create message abort..');
+            this.serverCreateMessage.abort();
+        }
     }
 
     toLower(str){
@@ -74,7 +87,8 @@ class BroadcastCreateMessage extends Component {
     // handle form field changes here
     onMessageChange(e){
         //console.log('first name => ' + e.target.value);
-        var message = this.toLower(e.target.value);
+        //var message = this.toLower(e.target.value);
+        var message = e.target.value;
         this.setState({message: message});
     }
 
@@ -120,17 +134,34 @@ class BroadcastCreateMessage extends Component {
         //console.log('group => ' + e.target.value);
         this.setState({selectedGroupId: e.target.value});
     }
+
+    getAuthenticationUser(){
+        //console.log('localStorage userData => ' + localStorage.getItem('userData'));
+        if(localStorage.getItem('userData') === null){
+            return false;
+        } else {
+            return JSON.parse(localStorage.getItem('userData')).userName;
+        }
+    }
     
     // handle save button clicked
     onCreateMessage(e){
 
         //alert('A name was submitted: ' + this.state.username);
-        //e.preventDefault();
+        e.preventDefault();
+
+        let userLogin = this.getAuthenticationUser();
+        console.log('userLogin get auth => ' + userLogin);
+        if(!userLogin){
+          //redirect to login
+        }
         
         
         // data in the form
         var form_data = {
-            username: this.state.username,
+            username: userLogin,
+            message: this.state.message,
+            /*
             email: this.state.email,
             sales_employee: this.state.sales_employee,
             phone: this.state.phone,
@@ -138,13 +169,15 @@ class BroadcastCreateMessage extends Component {
             active: this.state.active,
             first_name: this.state.first_name,
             last_name: this.state.last_name,
+            */
+            broadcastGroupId: this.props.broadcast_group_id,
             selectedGroupId: this.state.selectedGroupId
         };
 
         //console.log('form data =>' + JSON.stringify(form_data));
         
         // submit form data to api
-        $.ajax({
+        this.serverCreateMessage = $.ajax({
             url: this.props.broadcast_url + '/broadcast/create_message',
             type : "POST",
             dataType: 'json',
@@ -167,6 +200,7 @@ class BroadcastCreateMessage extends Component {
                     return false;
                 } else {
                     // empty form
+                    /*
                     this.setState({username: ""});
                     this.setState({email: ""});
                     this.setState({sales_employee: ""});
@@ -174,9 +208,24 @@ class BroadcastCreateMessage extends Component {
                     this.setState({first_name: ""});
                     this.setState({last_name: ""});
                     this.setState({selectedGroupId: ""});
+                    */
+
+                    this.setState({message: ''});
+                    this.setState({selectedGroupId: ''});
+
+                    console.log('toggle show box...');
+                    this.serverCreateMessage.abort();
+
+                    //this.props.btnMessageToggle.click();
+
+                    //this.props.callToggle();
+                    //this.props.toggleShow();
+                    //this.props.callToggle();
                     
                     // api message
-                    this.setState({submitStatus: 'Member was created.'});
+                    this.setState({submitStatus: 'Message was created.'});
+
+                    this.props.callToggle();
                 }
                 
                 //load list page
@@ -192,7 +241,7 @@ class BroadcastCreateMessage extends Component {
             }.bind(this)
         });
         
-        e.preventDefault();
+        //e.preventDefault();
     }
         
     // render component here
@@ -227,7 +276,7 @@ class BroadcastCreateMessage extends Component {
         */
         return (
             <div>
-                <div className="container wrapper main create-box">
+                <div className="container wrapper main create-box-message">
                     <div className="col-md-12">
                         {
                 
