@@ -128,8 +128,8 @@ body {
       width: 1.4em;
       height: 1.4em;
       stroke-width: 0;
-      stroke: #2A91A8;
-      fill: #2A91A8;
+      stroke: #74CFAE;
+      fill: #74CFAE;
    }
 
    .bullet .heart {
@@ -395,7 +395,7 @@ body {
    }
    .table.table-member tr:nth-of-type(even) td {
       background:rgba(255,255,255,.2);
-      background: rgba(244, 245, 247, 0.12);
+      background: #E4F6EF;
    }
    .table.table-member td:first-child {
       text-align:left;

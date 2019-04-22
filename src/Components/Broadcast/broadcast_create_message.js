@@ -355,7 +355,7 @@ class BroadcastCreateMessage extends Component {
                                         <button
                                         className='btn btn-info btn-sm'
                                         type='Submit'
-                                        onClick={() => this.onCreateMessage}>Save Changes</button>
+                                        onClick={() => this.onCreateMessage}>บันทึก</button>
                                     </td>
                                 </tr>
                                 </tbody>
