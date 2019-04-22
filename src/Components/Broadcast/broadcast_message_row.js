@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 //import {Link} from 'react-router-dom';
 
+import * as moment from 'moment';
+
 // component that renders a single member row
 class BroadcastMessageRow extends Component {
     constructor(props){
@@ -35,6 +37,7 @@ class BroadcastMessageRow extends Component {
     }
 
     render() {
+    //let now = moment().format('LLLL');
     return (
         <tr>
             <td><span className="bullet">
@@ -48,7 +51,8 @@ class BroadcastMessageRow extends Component {
             {this.props.broadcast_msg.message}
             </td>
             <td><span className={'badge badge-' + this.props.broadcast_msg.priority}>{this.props.broadcast_msg.priority}</span></td>
-            <td>Super99</td>
+            <td>{moment(this.props.broadcast_msg.created).format('YYYY-MM-DD HH:mm')}</td>
+            <td>{this.props.broadcast_msg.created_by}</td>
             <td>
             {
                 this.state.confirmDelete ?

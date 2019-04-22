@@ -29,6 +29,7 @@ class BroadcastMessageTable extends Component {
                                 <tr>
                                     <th width="40%">Message</th>
                                     <th>Priority</th>
+                                    <th>Created DateTime</th>
                                     <th>Created By</th>
                                     <th width="15%">Status</th>
                                 </tr>

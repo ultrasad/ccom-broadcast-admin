@@ -100,9 +100,10 @@ body {
    .center-panel-full .login-box {
       background: rgb(255, 255, 255) none repeat scroll 0% 0%;
       padding: 20px;
+      border-radius: 3px;
    }
 
-   .center-panel-full .login-box tr td {
+   .center-panel-full .login-box .table-login tr td {
       background: rgb(255, 255, 255) none repeat scroll 0% 0%;
    }
 
@@ -431,21 +432,25 @@ body {
       float:right;
    }
 
-   .form-login .table-member .btn-login {
+   .form-login .table-member .btn-login, .form-login .table-login .btn-login {
       display: inline-block;
       border-radius: 3px;
       padding: 0.5rem 0px;
       margin: 0.5rem 1rem;
       width: 11rem;
-      border: 2px solid white;
+      /*border: 2px solid white;*/
       background: #0747a6 none repeat scroll 0% 0%;
       color: #fff;
       opacity: 1;
    }
 
-   .form-login .table-member .btn-login:hover {
+   .form-login .table-member .btn-login:hover , .form-login .table-login .btn-login:hover {
       opacity: .8;
    }
+
+   .form-login .table-login td, .form-login .table-login th {
+      border: none;
+   } 
    
    /*
    table td:nth-of-type(6) {

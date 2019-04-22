@@ -137,10 +137,10 @@ class Login extends Component {
                                     </div>
                                 : null
                             }
-                            <h6>Log in to continue to Broadcast management</h6>
+                            <h6>Log in to continue to Broadcast Management</h6>
                             <div className="login-box col-md-12">
                                 <form onSubmit={this.onLogin}>
-                                    <table className='table table-member'>
+                                    <table className='table table-login'>
                                         <tbody>
                                             <tr>
                                                 <td>UserName</td>

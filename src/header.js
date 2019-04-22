@@ -14,12 +14,19 @@ class Header extends Component {
         this.onSearchChange = this.onSearchChange.bind(this);
         console.log('header search props >>' + this.props.searchBox);
         console.log('this props searchInput => ' + this.props.searchInput);
+
+        this.logOut = this.logOut.bind(this);
     }
 
     //componentDidMount() {
         //console.log('search input ===>>> ' + this.props.searchInput);
         //this.setState({searchInput: this.props.searchInput});
     //}
+
+    logOut(e){
+        e.preventDefault();
+        console.log('logout clear token, local storage');
+    }
 
     onSearchChange(e){
         console.log('do search', e.target.value);
@@ -70,9 +77,12 @@ class Header extends Component {
                             : ''
                         }
                         </div>
-                    <div className="menu-button" style={{ height: '57px'}}><svg className="heart" xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32">
-                        <path strokeWidth="2" d="M9.3 1C4.8 1 1 5.2 1 9.3 1 18.5 10.4 21 16.6 30 22.4 21 32 18.4 32 9.4c0-4-3.8-8.3-8.3-8.3-3.2 0-6.3 2-7.3 5C15 3 12.2 1.2 9 1.2z"></path>
+                    <div className="menu-button" style={{ height: '57px'}}>
+                    <Link to="#logout" onClick={this.logOut} className="logout-title" title="Logout">
+                        <svg className="heart" xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32">
+                            <path strokeWidth="2" d="M9.3 1C4.8 1 1 5.2 1 9.3 1 18.5 10.4 21 16.6 30 22.4 21 32 18.4 32 9.4c0-4-3.8-8.3-8.3-8.3-3.2 0-6.3 2-7.3 5C15 3 12.2 1.2 9 1.2z"></path>
                         </svg>
+                    </Link>
                     </div>
                 </div>
             </header>
