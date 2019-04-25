@@ -10,8 +10,7 @@ class BroadcastMessageRow extends Component {
         
         this.state = {
             confirmDelete: false,
-            onActive: false,
-            
+            onActive: false
         }
 
         this.onConfirm = this.onConfirm.bind(this);
@@ -43,12 +42,6 @@ class BroadcastMessageRow extends Component {
         console.log('status => ' + status);
     }
 
-    onEditMessage = (e, msg_id) => {
-        console.log('on edit row...');
-        e.preventDefault();
-        this.props.onEditMessage(msg_id)
-    }
-
     render() {
     //let now = moment().format('LLLL');
     return (
@@ -69,24 +62,64 @@ class BroadcastMessageRow extends Component {
             <td>{moment(this.props.broadcast_msg.created).format('YYYY-MM-DD HH:mm')}</td>
             <td>{this.props.broadcast_msg.created_by}</td>
             <td>
-                {this.props.broadcast_msg.active}
-                {/*
-                this.props.broadcast_msg.active === 'Y' ?
-                <div className="btn-group btn-toggle">
-                    <button className="btn btn-sm btn-default-toggle btn-small btn-primary active">Yes</button>
-                    <button className="btn btn-sm btn-default-toggle btn-small">No</button>
-                </div>
-                :
-                <div className="btn-group btn-toggle">
-                    <button className="btn btn-sm btn-default-toggle btn-small">Yes</button>
-                    <button className="btn btn-sm btn-default-toggle btn-small btn-primary active">No</button>
-                </div>
-                */}
-            </td>
-            <td>
             {
-                <a href="#edit" onClick={(e) => this.onEditMessage(e, this.props.broadcast_msg.id)}
-                   className='btn btn-sm btn-small btn-info'>แก้ไขข้อความ</a>
+                this.state.confirmDelete ?
+                <span>
+                    <a href="#confirm" value="" onClick={this.onDelete}
+                        className='btn btn-sm btn-danger mr-3'>Confirm</a>
+                    <a href="#cancel" onClick={this.onCancel}
+                        className='btn btn-sm btn-primary'>Cancel</a>
+                </span>
+                :
+                <span>
+                    {/*
+                    <div>
+                        <MuiThemeProvider>
+                            <HomeIcon style={iconStyles} />
+                            <ActionInfoOutline style={iconStyles} color={blue500} />
+                        </MuiThemeProvider>
+                    </div>
+                    */}
+
+                    {/*
+                    <Link to={"#/"}
+                        onClick={(e) => this.onActive(e, this.props.broadcast_msg.active)}
+                        className={'btn btn-'+(this.props.broadcast_msg.active === 'Y' ? 'info': 'danger')+' btn-sm'}>{(this.props.broadcast_msg.active === 'Y' ? 'Active': 'InActive')}
+                    </Link>
+                    */}
+
+                    <div className="btn-group btn-toggle"> 
+                        <button className="btn btn-sm btn-default-toggle btn-small btn-primary active">Yes</button>
+                        <button className="btn btn-sm btn-default-toggle btn-small">No</button>
+                    </div>
+
+                    {/*
+                    <a href={"#/"} onClick={(e) => this.onActive(e, this.props.broadcast_msg.active)}
+                        className='btn btn-danger btn-sm'>XXXX
+                    </a>*/}
+                    
+                    {/*
+                    <Link to={'#active'}
+                        onClick={e => e.preventDefault()}
+                        className='btn btn-info btn-default btn-sm mr-3 disabled-link'>Active
+                    </Link>
+                    */}
+
+                    {/*
+                    <Link to={'/members/id/'+this.props.broadcast.id + '/password'}
+                        onClick={() => this.props.changeAppMode('changePwd', this.props.broadcast.id, this.props.broadcast.username)}
+                        className='btn btn-warning btn-sm mr-3'>PWD
+                    </Link>
+                    <Link to={'/members/id/' + this.props.broadcast.id + '/edit'}
+                        onClick={() => this.props.changeAppMode('update', this.props.broadcast.id)}
+                        className='btn btn-primary btn-sm mr-3'>Edit
+                    </Link>
+                    <a href="javascript: void(0);" onClick={this.onConfirm}
+                        className='btn btn-danger btn-sm'>Del
+                    </a>
+                    */}
+                    
+                </span>
             }
             </td>
         </tr>

@@ -74,7 +74,7 @@ class BroadcastRow extends Component {
                     */}
                     <Link to={'/broadcast/id/'+ this.props.broadcast.id}
                         onClick={() => this.props.changeAppMode('readMessageGroup', this.props.broadcast.id, this.props.broadcast.groups.group_name)}
-                        className='btn btn-info btn-default btn-sm mr-3'>จัดการข้อความ
+                        className='btn btn-primary btn-default btn-small btn-sm mr-3'>จัดการข้อความ
                     </Link>
                     {/*
                     <Link to={'/members/id/'+this.props.broadcast.id + '/password'}

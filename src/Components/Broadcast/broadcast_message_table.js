@@ -14,6 +14,7 @@ class BroadcastMessageTable extends Component {
                         url_delete_member={this.props.url_delete_member}
                         key={i}
                         broadcast_msg={broadcast}
+                        onEditMessage={this.props.onEditMessage}
                         changeAppMode={this.props.changeAppMode}
                         onDeleteMember={this.props.onDeleteMember} />
                 );
@@ -24,14 +25,15 @@ class BroadcastMessageTable extends Component {
                     ? <div className='alert alert-member-found'>No Message found.</div>
                     :
                     <div className="member-list">
-                        <table className='table table-member'>
+                        <table className='table table-member table-broadcast-message'>
                             <thead>
                                 <tr>
                                     <th width="40%">Message</th>
                                     <th>Priority</th>
                                     <th>Created DateTime</th>
                                     <th>Created By</th>
-                                    <th width="15%">Status</th>
+                                    <th width="10%">Active</th>
+                                    <th width="15%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

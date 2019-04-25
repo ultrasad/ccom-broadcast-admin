@@ -259,7 +259,7 @@ class BroadcastCreateMessage extends Component {
        const  optionsData = [
             { value: 'danger', name: 'ด่วนมาก' },
             { value: 'warning', name: 'ปานกลาง' },
-            { value: 'info', name: 'ทั่วไป' }              
+            { value: 'info', name: 'ทั่วไป' } 
         ];
 
         let prioritiesOptions = optionsData.map(function(e, key){

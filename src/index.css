@@ -124,7 +124,7 @@ body {
    }
    */
 
-   .bullet .bullhorn, .bullet .hangouts, .bullet .heart, .bullet .clock {
+   .bullet .bullhorn, .bullet .hangouts, .bullet .heart, .bullet .clock, .bullet .volume {
       display: inline-block;
       width: 1.4em;
       height: 1.4em;
@@ -206,6 +206,15 @@ body {
    .wrapper .btn-default, .wrapper .btn-default:hover {
       background: rgb(0, 82, 204) none repeat scroll 0% 0%;
    }
+   .wrapper .btn-small {
+      padding: .20rem .4rem;
+      font-size: .800rem;
+   }
+   .wrapper .btn-default-toggle, .wrapper .btn-default-toggle:hover {
+      background: #c7c9cc;
+      color: #686262;
+   }
+
    .wrapper .btn.focus, .wrapper .btn:focus {
       box-shadow: none;
    }
@@ -570,6 +579,7 @@ body {
       color: rgb(66, 82, 110);
       line-height: 40px;
       font-size: 0.9em;
+      z-index: 2;
    }
    .me {
       float:right;

@@ -27,42 +27,43 @@ class ReadBroadcastMessageComponent extends Component {
             broadcastGroupId: '',
             broadcastGroupname: '',
             showCreateForm: false,
+            showButtonCreate: true,
             btnTextMessage: 'สร้างข้อความใหม่',
             broadcast_url: this.props.broadcast_url
         }
 
         
-        this.toggleShow = this.toggleShow.bind(this);
+        this.toggleCreate = this.toggleCreate.bind(this);
+        this.callToggle = this.callToggle.bind(this);
+        this.onEditMessage = this.onEditMessage.bind(this);
         this.requestBroadcastMessage = this.requestBroadcastMessage.bind(this);
         //this.isMounted = true;
-    }
+    };
 
     //_isMounted = false;
 
-    callToggle = (e) => {
+    callToggle = () => {
         //console.log('call toggle show....');
         //this.setState({showCreateForm: false});
 
         //const btnText = (this.state.btnTextMessage === 'สร้างข้อความใหม่' ? 'ยกเลิก' : 'สร้างข้อความใหม่');
         //this.setState({btnTextMessage: btnText});
         //this.toggleShow();
-
-        e.preventDefault();
+        //e.preventDefault();
 
         this.setState({
             ...this.state,
             btnTextMessage: 'สร้างข้อความใหม่', 
             showCreateForm: false,
             isAddTripState: true
-          });
-        
+        });
 
-          //re call request broadcast message
-          console.log('call request broadcast message....');
-          this.requestBroadcastMessage();
-    }
+        //re call request broadcast message
+        console.log('call request broadcast message....');
+        this.requestBroadcastMessage();
+    };
 
-    toggleShow = () => {
+    toggleCreate = () => {
         //this._isMounted = false;
         console.log('toggle Show box, read box main');
         //if(this._isMounted){
@@ -72,6 +73,26 @@ class ReadBroadcastMessageComponent extends Component {
         this.setState({btnTextMessage: btnText});
         //}
     };
+
+    onEditMessage = (messageId) => {
+        console.log('edit message...' + messageId);
+
+        this.setState(state => ({ 
+            //showButtonCreate: true,
+            showCreateForm: true,
+            btnTextMessage: 'ยกเลิก',
+
+        }));
+        
+        /*
+        this.setState({
+            ...this.state,
+            btnTextMessage: 'สร้างข้อความใหม่', 
+            showCreateForm: false,
+            isAddTripState: true
+        });
+        */
+    }
 
     requestBroadcastMessage(){
 
@@ -175,7 +196,7 @@ class ReadBroadcastMessageComponent extends Component {
             <div role="main" id="main" className="main wrapper center-panel-full">
                 <div className='overflow-hidden'>
                     <Header searchInput={false} clearState={this.clearState} searchBox={false} onSearchMember={this.onSearchMember} requestMember={this.state.requestMember} />
-                    <TopActionsComponent searchInput={false} changeName={this.props.changeName} changeAppMode={this.props.changeAppMode} textHeaderAction={'Broadcast Group Message :: ' + broadcastGroupname} buttonAction={<ButtonCreateMessage onClick={(e) => this.toggleShow(e)} btnText={this.state.btnTextMessage} otherParam={''} />} />
+                    <TopActionsComponent searchInput={false} changeName={this.props.changeName} changeAppMode={this.props.changeAppMode} textHeaderAction={'Broadcast Group Message :: ' + broadcastGroupname} buttonAction={this.state.showButtonCreate ? <ButtonCreateMessage onClick={(e) => this.toggleCreate(e)} btnText={this.state.btnTextMessage} otherParam={''} /> : null } />
                     
                     <div>
                         
@@ -198,7 +219,7 @@ class ReadBroadcastMessageComponent extends Component {
                         <div>
                             {/*this.renderCreateMessage()*/}
                             {/* {this.state.isAddTripState && <AnotherComponent />} */}
-                            {this.state.showCreateForm && <BroadcastCreateMessage broadcast_url={this.state.broadcast_url} broadcast_group_id={this.state.broadcastGroupId} toggleShow={this.toggleShow} callToggle={this.callToggle.bind(this)} />}
+                            {this.state.showCreateForm && <BroadcastCreateMessage broadcast_url={this.state.broadcast_url} broadcast_group_id={this.state.broadcastGroupId} callToggle={this.callToggle} />}
                         </div>
 
                         <div>
@@ -215,6 +236,7 @@ class ReadBroadcastMessageComponent extends Component {
                         broadcasts={filteredBroadcastMessages}
                         changeAppMode={this.props.changeAppMode}
                         onDeleteMember={this.onDeleteMember}
+                        onEditMessage={this.onEditMessage}
                         nextPage={this.nextPage}
                         prevPage={this.prevPage}/>
                     }
