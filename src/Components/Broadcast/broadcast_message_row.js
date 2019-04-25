@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import * as moment from 'moment';
 
@@ -9,7 +9,8 @@ class BroadcastMessageRow extends Component {
         super(props);
         
         this.state = {
-            confirmDelete: false
+            confirmDelete: false,
+            onActive: false
         }
 
         this.onConfirm = this.onConfirm.bind(this);
@@ -34,6 +35,11 @@ class BroadcastMessageRow extends Component {
         e.preventDefault();
         this.props.onDeleteMember(this.props.broadcast.id);
         this.setState({confirmDelete: false});
+    }
+
+    onActive = (e, status) => {
+        e.preventDefault();
+        console.log('status => ' + status);
     }
 
     render() {
@@ -73,7 +79,15 @@ class BroadcastMessageRow extends Component {
                     </div>
                     */}
 
-                    Active
+                    <Link to={"#/"}
+                        onClick={(e) => this.onActive(e, this.props.broadcast_msg.active)}
+                        className={'btn btn-'+(this.props.broadcast_msg.active === 'Y' ? 'info': 'danger')+' btn-sm'}>{(this.props.broadcast_msg.active === 'Y' ? 'Active': 'InActive')}
+                    </Link>
+
+                    {/*
+                    <a href={"#/"} onClick={(e) => this.onActive(e, this.props.broadcast_msg.active)}
+                        className='btn btn-danger btn-sm'>XXXX
+                    </a>*/}
                     
                     {/*
                     <Link to={'#active'}

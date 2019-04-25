@@ -39,13 +39,15 @@ class ReadBroadcastMessageComponent extends Component {
 
     //_isMounted = false;
 
-    callToggle = () => {
+    callToggle = (e) => {
         //console.log('call toggle show....');
         //this.setState({showCreateForm: false});
 
         //const btnText = (this.state.btnTextMessage === 'สร้างข้อความใหม่' ? 'ยกเลิก' : 'สร้างข้อความใหม่');
         //this.setState({btnTextMessage: btnText});
         //this.toggleShow();
+
+        e.preventDefault();
 
         this.setState({
             ...this.state,
@@ -173,7 +175,7 @@ class ReadBroadcastMessageComponent extends Component {
             <div role="main" id="main" className="main wrapper center-panel-full">
                 <div className='overflow-hidden'>
                     <Header searchInput={false} clearState={this.clearState} searchBox={false} onSearchMember={this.onSearchMember} requestMember={this.state.requestMember} />
-                    <TopActionsComponent searchInput={false} changeName={this.props.changeName} changeAppMode={this.props.changeAppMode} textHeaderAction={'Broadcast Group Message :: ' + broadcastGroupname} buttonAction={<ButtonCreateMessage onClick={this.toggleShow} btnText={this.state.btnTextMessage} otherParam={''} />} />
+                    <TopActionsComponent searchInput={false} changeName={this.props.changeName} changeAppMode={this.props.changeAppMode} textHeaderAction={'Broadcast Group Message :: ' + broadcastGroupname} buttonAction={<ButtonCreateMessage onClick={(e) => this.toggleShow(e)} btnText={this.state.btnTextMessage} otherParam={''} />} />
                     
                     <div>
                         

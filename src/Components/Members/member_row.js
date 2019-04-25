@@ -62,9 +62,9 @@ class MemberRow extends Component {
             {
                 this.state.confirmDelete ?
                 <span>
-                    <a href="#/onDelete" value="" onClick={this.onDelete}
+                    <a href="#onDelete" value="" onClick={this.onDelete}
                         className='btn btn-sm btn-danger mr-3'>Confirm</a>
-                    <a href="#/onCancel" onClick={this.onCancel}
+                    <a href="#onCancel" onClick={this.onCancel}
                         className='btn btn-sm btn-primary'>Cancel</a>
                 </span>
                 :
@@ -89,7 +89,7 @@ class MemberRow extends Component {
                         onClick={() => this.props.changeAppMode('update', this.props.member.id)}
                         className='btn btn-primary btn-sm mr-3'>Edit
                     </Link>
-                    <a href="#/onConfirm" onClick={this.onConfirm}
+                    <a href="#onConfirm" onClick={this.onConfirm}
                         className='btn btn-danger btn-sm'>Del
                     </a>
                     
