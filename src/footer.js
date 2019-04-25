@@ -4,16 +4,18 @@ import React, { Component } from 'react';
 class Footer extends Component {
     
     componentDidMount () {
-        console.log('header didmount..');
+        console.log('footer didmount..');
         //this.setState({name: this.props.data.name});
     }
 
+    /*
     componentWillReceiveProps(nextProps){
         //console.log('next props searchInput => ' + nextProps.searchInput);
         this.setState({
             searchInput: nextProps.searchInput
         });
     }
+    */
 
     render(){
 

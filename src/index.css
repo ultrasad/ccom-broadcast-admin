@@ -376,7 +376,7 @@ body {
    }
    */
    table{
-      font-family:"Source Code Pro",Consolas,monospace;
+      /*font-family:"Source Code Pro",Consolas,monospace;*/
       width:100%;
    }
    table.table-member {

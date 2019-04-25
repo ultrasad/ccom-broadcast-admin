@@ -94,7 +94,7 @@ class Login extends Component {
                      
                     // api message
                     this.setState({loginStatus: 'Unable to login.'});             
-                }
+                }.bind(this)
             });
 
             /*
