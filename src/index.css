@@ -142,7 +142,7 @@ body {
    
    .header-account {
       position:relative;
-      margin-top: -4px;
+      /*margin-top: -4px;*/
       margin-right: 1rem;
       font-size:1.4em;
       text-align:center;
@@ -416,6 +416,11 @@ body {
    .table.table-member td .bullet {
       color: #3572b0;
    }
+
+   .create-box-message .table.table-member tr td {
+      background: #edecf2;
+   }
+
    .pagination.pagination-member {
       width: 100%;
       margin-top: 0;

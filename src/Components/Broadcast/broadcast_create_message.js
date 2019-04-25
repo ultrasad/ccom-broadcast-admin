@@ -10,23 +10,29 @@ class BroadcastCreateMessage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: 'Super99',
-            message: '',
+            //username: 'Super99',
+            username: localStorage.getItem('userData'),
+            //message: '',
+            messageId: this.props.broadcast_edit_message_id,
+            message: this.props.broadcast_edit_message_title,
             description: '',
             startdate: '',
             starttime: '',
             enddate: '',
             endtime: '',
-            priority: '',
-            created: '2019-04-21',
-            created_by: 'Super99',
+            //priority: '',
+            priority: this.props.broadcast_edit_message_priority,
+            //created: '2019-04-21',
+            created: null,
+            //created_by: 'Super99',
+            created_by: localStorage.getItem('userData'),
             updated_by: '',
             deleted_by: '',
-            last_modified: '',
+            //last_modified: '',
             active: 'Y',
             groups: [],
             broadcast_group_id: '',
-            selectedGroupId: '',
+            selectedGroupId: this.props.broadcast_edit_message_priority,
             submitStatus: null,
             fields: {},
             errors: 'Unable to save member. Please try again.',
@@ -133,7 +139,7 @@ class BroadcastCreateMessage extends Component {
     
     // handle group change
     onGroupChange(e){
-        //console.log('group => ' + e.target.value);
+        console.log('group => ' + e.target.value);
         this.setState({selectedGroupId: e.target.value});
     }
 
@@ -158,7 +164,6 @@ class BroadcastCreateMessage extends Component {
           //redirect to login
         }
         
-        
         // data in the form
         var form_data = {
             username: userLogin,
@@ -173,14 +178,21 @@ class BroadcastCreateMessage extends Component {
             last_name: this.state.last_name,
             */
             broadcastGroupId: this.props.broadcast_group_id,
+            priority: this.state.selectedGroupId,
             selectedGroupId: this.state.selectedGroupId
         };
 
+        console.log('selected group change => ' + this.state.selectedGroupId);
+        
+        let action_message = 'create_message';
+        if(this.state.messageId !== ''){
+            action_message = 'update_message/' + this.state.messageId;
+        }
         //console.log('form data =>' + JSON.stringify(form_data));
         
         // submit form data to api
         this.serverCreateMessage = $.ajax({
-            url: this.props.broadcast_url + '/broadcast/create_message',
+            url: this.props.broadcast_url + '/broadcast/' + action_message,
             type : "POST",
             dataType: 'json',
             contentType : 'application/json',

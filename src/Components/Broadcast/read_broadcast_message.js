@@ -73,8 +73,15 @@ class ReadBroadcastMessageComponent extends Component {
         //this._isMounted = false;
         console.log('toggle Show box, read box main');
         //if(this._isMounted){
-        console.log('toggle show main..');
-        this.setState(state => ({ showCreateForm: !state.showCreateForm }));
+        console.log('toggle show main, create msg..');
+        this.setState(state => ({ 
+            //...this.state,
+            editMode: !state.editMode,
+            broadcastEditMessageId: '',
+            broadcastEditMessageTitle: '',
+            broadcastEditMessagePriority: '',
+            showCreateForm: !state.showCreateForm 
+        }));
         const btnText = (this.state.btnTextMessage === 'สร้างข้อความใหม่' ? 'ยกเลิก' : 'สร้างข้อความใหม่');
         this.setState({btnTextMessage: btnText});
         //}
