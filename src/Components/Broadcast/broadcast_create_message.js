@@ -34,6 +34,8 @@ class BroadcastCreateMessage extends Component {
 
         console.log('Create message broadcast url => ' + this.props.broadcast_url);
 
+        console.log('create message, editMode => ' + this.props.broadcast_edit_mode + ', msg id => ' + this.props.broadcast_edit_message_id + ', msg title => ' + this.props.broadcast_edit_message_title + ', msg priority => ' + this.props.broadcast_edit_message_priority);
+
         // This line is important!
         this.onCreateMessage = this.onCreateMessage.bind(this);
         this.onMessageChange = this.onMessageChange.bind(this);

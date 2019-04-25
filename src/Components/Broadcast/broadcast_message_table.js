@@ -14,6 +14,7 @@ class BroadcastMessageTable extends Component {
                         url_delete_member={this.props.url_delete_member}
                         key={i}
                         broadcast_msg={broadcast}
+                        editMode={this.props.editMode}
                         onEditMessage={this.props.onEditMessage}
                         changeAppMode={this.props.changeAppMode}
                         onDeleteMember={this.props.onDeleteMember} />

@@ -18,6 +18,7 @@ class BroadcastMessageRow extends Component {
         this.onCancel = this.onCancel.bind(this);
         this.onDelete = this.onDelete.bind(this);
 
+        //console.log('editMode, msg id => ' + this.props.editMode);
         //console.log('Broadcast Row...');
     }
 
@@ -43,10 +44,10 @@ class BroadcastMessageRow extends Component {
         console.log('status => ' + status);
     }
 
-    onEditMessage = (e, msg_id) => {
+    onEditMessage = (e, msg_id, msg_title, msg_priority) => {
         console.log('on edit row...');
         e.preventDefault();
-        this.props.onEditMessage(msg_id)
+        this.props.onEditMessage(msg_id, msg_title, msg_priority);
     }
 
     render() {
@@ -85,7 +86,7 @@ class BroadcastMessageRow extends Component {
             </td>
             <td>
             {
-                <a href="#edit" onClick={(e) => this.onEditMessage(e, this.props.broadcast_msg.id)}
+                <a href="#edit" onClick={(e) => this.onEditMessage(e, this.props.broadcast_msg.id, this.props.broadcast_msg.message, this.props.broadcast_msg.priority)}
                    className='btn btn-sm btn-small btn-info'>แก้ไขข้อความ</a>
             }
             </td>

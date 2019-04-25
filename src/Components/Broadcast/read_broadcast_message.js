@@ -15,6 +15,7 @@ class ReadBroadcastMessageComponent extends Component {
     constructor(props){
         super(props);
         this.state = {
+            /*
             id: 0,
             username: '',
             email: '',
@@ -24,14 +25,19 @@ class ReadBroadcastMessageComponent extends Component {
             company: 'RS',
             group_name: '',
             active: 1,
+            */
+            editMode: false,
+            broadcastEditMessageId: '',
+            broadcastEditMessageTitle: '',
+            broadcastEditMessagePriority: '',
             broadcastGroupId: '',
             broadcastGroupname: '',
             showCreateForm: false,
             showButtonCreate: true,
             btnTextMessage: 'สร้างข้อความใหม่',
+            contentEditable: [],
             broadcast_url: this.props.broadcast_url
         }
-
         
         this.toggleCreate = this.toggleCreate.bind(this);
         this.callToggle = this.callToggle.bind(this);
@@ -74,14 +80,17 @@ class ReadBroadcastMessageComponent extends Component {
         //}
     };
 
-    onEditMessage = (messageId) => {
+    onEditMessage = (messageId, Title, Priority) => {
         console.log('edit message...' + messageId);
 
         this.setState(state => ({ 
             //showButtonCreate: true,
             showCreateForm: true,
             btnTextMessage: 'ยกเลิก',
-
+            editMode: true,
+            broadcastEditMessageId: messageId,
+            broadcastEditMessageTitle: Title,
+            broadcastEditMessagePriority: Priority
         }));
         
         /*
@@ -219,7 +228,7 @@ class ReadBroadcastMessageComponent extends Component {
                         <div>
                             {/*this.renderCreateMessage()*/}
                             {/* {this.state.isAddTripState && <AnotherComponent />} */}
-                            {this.state.showCreateForm && <BroadcastCreateMessage broadcast_url={this.state.broadcast_url} broadcast_group_id={this.state.broadcastGroupId} callToggle={this.callToggle} />}
+                            {this.state.showCreateForm && <BroadcastCreateMessage broadcast_url={this.state.broadcast_url} broadcast_group_id={this.state.broadcastGroupId} broadcast_edit_mode={this.state.editMode} broadcast_edit_message_id={this.state.broadcastEditMessageId} broadcast_edit_message_title={this.state.broadcastEditMessageTitle} broadcast_edit_message_priority={this.state.broadcastEditMessagePriority} callToggle={this.callToggle} />}
                         </div>
 
                         <div>

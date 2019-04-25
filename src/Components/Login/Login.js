@@ -40,7 +40,7 @@ class Login extends Component {
             //console.log('form data =>' + JSON.stringify(form_data));
             
             // submit form data to api
-            $.ajax({
+            this.serverRequestloginBroadcast = $.ajax({
                 //url: this.props.url_login_member,
                 url: this.props.base_url + '/membermanagement/login_member_ccom',
                 type : "POST",
@@ -107,6 +107,11 @@ class Login extends Component {
             });
             */
         }
+    }
+
+    componentWillUnmount() {
+        console.log('login broadcast unmount component...');
+        this.serverRequestloginBroadcast.abort();
     }
         
     onChange(e){
