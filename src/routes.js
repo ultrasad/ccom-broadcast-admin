@@ -13,9 +13,11 @@ const getUrl = window.location;
 var base_url = getUrl.protocol + "//" + getUrl.host;
 var broadcast_url = getUrl.protocol + "//" + getUrl.host;
 
-if(base_url === 'http://localhost:3000'){
+broadcast_url = 'http://172.22.228.211:8085';
+
+if(base_url === 'http://localhost:3000' || base_url === 'http://localhost:5000'){ //5000:build
     base_url = 'http://172.22.228.225';
-    broadcast_url = 'http://172.22.228.211:8085';
+    //broadcast_url = 'http://172.22.228.211:8085';
 }
 
 console.log('base url => ' + base_url);

@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //import './index.css';
 
+// This must be the first line in src/index.js
+import 'react-app-polyfill/ie11';
+import 'url-search-params-polyfill';
+
 import Routes from './routes';
 import {Provider} from 'react-redux';
 
@@ -10,10 +14,6 @@ import {createStore, combineReducers, applyMiddleware} from 'redux';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-
-// This must be the first line in src/index.js
-import 'react-app-polyfill/ie11';
-import 'url-search-params-polyfill';
 
 import * as serviceWorker from './serviceWorker';
 
