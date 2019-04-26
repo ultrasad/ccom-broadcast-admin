@@ -10,8 +10,8 @@ import NotFound from '././Components/NotFound/NotFound';
 import requireAuthentication from '././Components/Auth/requireAuthentication';
 
 const getUrl = window.location;
-var base_url = getUrl.protocol + "//" + getUrl.host;
-var broadcast_url = getUrl.protocol + "//" + getUrl.host;
+let base_url = getUrl.protocol + "//" + getUrl.host;
+let broadcast_url = getUrl.protocol + "//" + getUrl.host;
 
 broadcast_url = 'http://172.22.228.211:8085';
 
