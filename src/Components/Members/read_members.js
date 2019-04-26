@@ -125,7 +125,7 @@ class ReadMembersComponent extends Component {
 
             //console.log('member search => ', this.state.searchInput + ' => ' + this.props.url_search_member);
 
-            $.ajax({
+            this.serverRequestSearchMember = $.ajax({
                 url: this.props.url_search_member,
                 type : "POST",
                 dataType: 'json',
@@ -551,6 +551,7 @@ class ReadMembersComponent extends Component {
     componentWillUnmount() {
         //console.log('kill process request member >>>');
         this.serverRequestMember.abort();
+        this.serverRequestSearchMember.abort();
     }
 
     componentDidUpdate(){
